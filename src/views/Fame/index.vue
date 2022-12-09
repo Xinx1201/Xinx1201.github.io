@@ -2,7 +2,7 @@
   <div class="fame-box">
     <div class="left">
       <!-- 左侧为时间线 -->
-      <el-card>
+      <el-card shadow="hover">
         <div slot="header">
           <span>{{ currentStage.title }}</span
           ><span class="time">({{ currentTime }})</span>
@@ -32,6 +32,7 @@
       <div class="map-box">
         <!-- 地图 -->
         <div
+          v-if="mapName"
           class="map"
           :style="{
             background: 'url(' + getMap(mapName) + ') no-repeat',
@@ -42,6 +43,8 @@
           <span class="prefix">当前:</span>
           <span class="text">{{ currentStageTitle }}</span>
         </div>
+
+        <div class="mapName">{{ currentStage.title }}</div>
         <!-- 下一阶段 -->
         <div class="nextTitle">
           <span class="prefix">下一个:</span>
@@ -106,7 +109,11 @@ export default {
         ':' +
         (new Date().getMinutes() < 10
           ? '0' + new Date().getMinutes()
-          : new Date().getMinutes());
+          : new Date().getMinutes()) +
+        ':' +
+        (new Date().getSeconds() < 10
+          ? '0' + new Date().getSeconds()
+          : new Date().getSeconds());
 
       // 获取到所有完成阶段的列表
       let filterFinishStageArr = this.currentStage.stages.filter((x) => {
@@ -126,7 +133,6 @@ export default {
       } else {
         // 如果跨地图的话 显示【地图/位置】
         if (minType == 'Zero') {
-          console.log(this.fameData[`${HourType}`]);
           this.nextStageTitle =
             this.fameData[`${HourType}`].Half.title +
             '/' +
@@ -196,7 +202,7 @@ export default {
   }
 
   .right {
-    width: 55%;
+    width: 51.5%;
     .map-box {
       height: 100%;
       margin-left: 5%;
@@ -204,10 +210,9 @@ export default {
       position: relative;
 
       .map {
-        margin-top: 33px;
+        margin-top: 35px;
         width: 100%;
         height: 100%;
-        background-size: contain;
       }
 
       .title {
@@ -224,6 +229,17 @@ export default {
         line-height: 30px;
         left: 1px;
         top: 1px;
+        border: 1px dashed #eee;
+      }
+
+      .mapName {
+        position: absolute;
+        width: 200px;
+        height: 30px;
+        line-height: 30px;
+        left: 39%;
+        top: 1px;
+        font-size: 23px;
         border: 1px dashed #eee;
       }
 
@@ -264,185 +280,185 @@ export default {
 
       // 百溪 - 单数小时,每整点进行
       #商家劫难 {
-        top: 0%;
-        right: 0%;
+        top: 35%;
+        right: 29%;
         position: absolute;
       }
 
       #保护庄稼 {
-        top: 0%;
-        right: 0%;
+        top: 24%;
+        right: 44%;
         position: absolute;
       }
 
       #祈送吉船 {
-        top: 0%;
-        right: 0%;
+        top: 40%;
+        right: 50%;
         position: absolute;
       }
 
       #商家劫难-再 {
-        top: 0%;
-        right: 0%;
+        top: 35%;
+        right: 29%;
         position: absolute;
       }
 
       #村长请求 {
-        top: 0%;
-        right: 0%;
+        top: 65%;
+        right: 43%;
         position: absolute;
       }
 
       #阻止借贷 {
-        top: 0%;
-        right: 0%;
+        bottom: 27%;
+        left: 26%;
         position: absolute;
       }
 
       #拯救村民 {
-        top: 0%;
-        right: 0%;
+        bottom: 19%;
+        left: 21%;
         position: absolute;
       }
 
       #强敌来阻 {
-        top: 0%;
-        right: 0%;
+        bottom: 19%;
+        left: 21%;
         position: absolute;
       }
 
       // 楚州 - 单数小时,每半点进行
       #援护山阳 {
-        top: 0%;
-        right: 0%;
+        top: 14%;
+        right: 37%;
         position: absolute;
       }
 
       #保卫难民 {
         top: 28%;
-        left: 34%;
+        left: 36%;
         position: absolute;
       }
 
       #护送盐车 {
-        top: 0%;
-        right: 0%;
+        top: 31.5%;
+        right: 52%;
         position: absolute;
       }
 
       #南辕恶霸 {
-        top: 0%;
-        right: 0%;
+        top: 33%;
+        left: 40%;
         position: absolute;
       }
 
       #稀世珍宝 {
-        top: 0%;
-        right: 0%;
+        bottom: 38%;
+        right: 27%;
         position: absolute;
       }
 
       // 烂柯山 - 双数小时,每整点进行
       #点燃烟花 {
-        top: 0%;
-        right: 0%;
+        bottom: 16%;
+        left: 36%;
         position: absolute;
       }
 
       #保护花灯 {
-        top: 0%;
-        right: 0%;
+        bottom: 13%;
+        left: 41%;
         position: absolute;
       }
 
       #击退黄仁笑 {
-        top: 0%;
-        right: 0%;
+        bottom: 13%;
+        left: 41%;
         position: absolute;
       }
 
       #再战凌天 {
-        top: 0%;
-        right: 0%;
+        top: 52.5%;
+        right: 47%;
         position: absolute;
       }
 
       #醉酒闹事 {
-        top: 0%;
-        right: 0%;
+        top: 13%;
+        left: 43%;
         position: absolute;
       }
 
       #帮助安济坊 {
-        top: 0%;
-        right: 0%;
+        top: 50%;
+        right: 38.2%;
         position: absolute;
       }
 
       #击败镜栖 {
-        top: 0%;
-        right: 0%;
+        top: 50%;
+        right: 38.2%;
         position: absolute;
       }
 
       #安抚工人 {
-        top: 0%;
-        right: 0%;
+        bottom: 9%;
+        left: 33%;
         position: absolute;
       }
 
       #物归原主 {
-        top: 0%;
-        right: 0%;
+        bottom: 12%;
+        left: 24%;
         position: absolute;
       }
 
       #卜家工头 {
-        top: 0%;
-        right: 0%;
+        bottom: 12%;
+        left: 24%;
         position: absolute;
       }
 
       // 晟江 - 双数小时,每半点进行
       #檐上君子 {
-        top: 0%;
-        right: 0%;
+        bottom: 28%;
+        right: 30%;
         position: absolute;
       }
 
       #击退林司豪 {
-        top: 0%;
-        right: 0%;
+        bottom: 37%;
+        left: 34%;
         position: absolute;
       }
 
       #击退黄七 {
-        top: 0%;
-        right: 0%;
+        bottom: 39%;
+        left: 40%;
         position: absolute;
       }
 
       #护送镖车 {
-        top: 0%;
-        right: 0%;
+        top: 33%;
+        left: 34%;
         position: absolute;
       }
 
       #鱼目混珠 {
-        top: 0%;
-        right: 0%;
+        top: 26%;
+        left: 28%;
         position: absolute;
       }
 
       #击退林司豪-再 {
-        top: 0%;
-        right: 0%;
+        bottom: 37%;
+        left: 34%;
         position: absolute;
       }
 
       #击退黄七-再 {
-        top: 0%;
-        right: 0%;
+        bottom: 39%;
+        left: 40%;
         position: absolute;
       }
     }
