@@ -202,7 +202,8 @@ export default {
   }
 
   .right {
-    width: 51.5%;
+    width: 970px;
+    height: 785px;
     .map-box {
       height: 100%;
       margin-left: 5%;
