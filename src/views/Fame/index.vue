@@ -94,7 +94,15 @@ export default {
   },
   methods: {
     getMap(mapName) {
-      return require('../../assets/img/' + mapName + '.png');
+      if (mapName == '晟江') {
+        return `https://s1.ax1x.com/2022/12/10/zWBfmD.png`;
+      } else if (mapName == '楚州') {
+        return `https://s1.ax1x.com/2022/12/10/zWB4TH.png`;
+      } else if (mapName == '百溪') {
+        return `https://s1.ax1x.com/2022/12/10/zWBROO.png`;
+      } else if (mapName == '烂柯山') {
+        return `https://s1.ax1x.com/2022/12/10/zWBh0e.png`;
+      }
     },
     getCurrentStage() {
       let HourType = new Date().getHours() % 2 ? 'odd' : 'even';
