@@ -8,15 +8,12 @@ const routes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/Home',
+    redirect: '/Fame',
     children: [
       {
-        path: 'Home',
-        component: () => import('@/views/Home'),
-        name: 'Home',
-        meta: {
-          title: '首页',
-        },
+        path: 'Fame',
+        component: () => import('@/views/Fame'),
+        name: 'Fame',
       },
     ],
   },

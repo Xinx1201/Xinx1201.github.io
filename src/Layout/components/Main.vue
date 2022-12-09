@@ -21,7 +21,7 @@ export default {
 
 <style lang="scss" scoped>
 .Main {
-  min-height: calc(100vh - 111px);
+  min-height: calc(100vh - 112px);
   width: 100%;
   position: relative;
   overflow: hidden;

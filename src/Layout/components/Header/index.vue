@@ -7,7 +7,7 @@
         mode="horizontal"
         @select="handleSelect"
       >
-        <el-menu-item index="1">处理中心</el-menu-item>
+        <el-menu-item index="1">楚天社</el-menu-item>
       </el-menu>
     </div>
   </div>
@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     handleSelect(key, keyPath) {
-      console.log(key, keyPath);
+      return;
     },
   },
 };

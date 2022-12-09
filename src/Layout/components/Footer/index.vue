@@ -1,6 +1,8 @@
 <template>
   <div class="container">
-    <span>底部信息</span>
+    <span>
+      <el-link @click="onClickAuthor">{{ author }}</el-link>
+    </span>
   </div>
 </template>
 
@@ -9,7 +11,16 @@ export default {
   name: 'Header',
   components: {},
   data() {
-    return {};
+    return {
+      author: '九娄的灵蛇',
+    };
+  },
+  methods: {
+    onClickAuthor() {
+      window.open(
+        'https://github.com/xin-code/JX3_MY_DATA/tree/master/MY_TeamMon/zhcn'
+      );
+    },
   },
 };
 </script>
@@ -18,6 +29,6 @@ export default {
 .container {
   height: 50px;
   line-height: 50px;
-  background-color: #ccc;
+  background-color: rgba(238, 238, 238, 0.5);
 }
 </style>

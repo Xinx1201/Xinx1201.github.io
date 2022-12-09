@@ -14,8 +14,7 @@ import '@/assets/style/main.scss'
 
 // 路由导航
 router.beforeEach(async (to, from, next) => {
-  console.log(to)
-  if (to.name === 'Home') {
+  if (to.name === 'Fame') {
     next()
   } else {
   }
