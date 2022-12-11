@@ -8,7 +8,7 @@ const routes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/Fame',
+    redirect: '/Time',
     children: [
       {
         path: 'Fame',

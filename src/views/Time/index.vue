@@ -2,6 +2,21 @@
   <div class="container">
     <div class="calc">
       <div class="select">
+        <el-select
+          allow-create
+          filterable
+          default-first-option
+          v-model="server"
+          placeholder="服务器"
+        >
+          <el-option
+            v-for="item in serverList"
+            :key="item"
+            :label="item"
+            :value="item"
+          >
+          </el-option>
+        </el-select>
         <el-select v-model="map" filterable placeholder="地图">
           <el-option-group
             v-for="group in mapOptinos"
@@ -54,6 +69,8 @@
       <el-table :data="tableData" stripe style="width: 100%; height: 100%">
         <el-table-column prop="originTime" label="记录时间" align="center">
         </el-table-column>
+        <el-table-column prop="server" label="服务器" align="center">
+        </el-table-column>
         <el-table-column prop="map" label="地点" align="center">
         </el-table-column>
         <el-table-column prop="type" label="类型" align="center">
@@ -91,8 +108,11 @@ export default {
       currentTime: '', // 当前时间
       time: '',
       end: '',
+      server: '', // 服务器
       map: '', // 地点
       type: '', // 类型
+
+      serverList: ['破阵子'],
 
       mapOptinos: [
         {
@@ -210,6 +230,7 @@ export default {
     onClickRecord() {
       this.tableData.push({
         originTime: this.currentTime,
+        server: this.server, // 服务器
         map: this.map, // 地点
         type: this.type, // 马的种类
         endTime: this.end,
