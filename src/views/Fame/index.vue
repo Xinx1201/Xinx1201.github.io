@@ -95,13 +95,13 @@ export default {
   methods: {
     getMap(mapName) {
       if (mapName == '晟江') {
-        return `https://s1.ax1x.com/2022/12/10/zWBfmD.png`;
+        return `https://tuchuangs.com/imgs/2022/12/11/43b5997d16c1d766.png`;
       } else if (mapName == '楚州') {
-        return `https://s1.ax1x.com/2022/12/10/zWB4TH.png`;
+        return `https://tuchuangs.com/imgs/2022/12/11/b7bd56757d78c84b.png`;
       } else if (mapName == '百溪') {
-        return `https://s1.ax1x.com/2022/12/10/zWBROO.png`;
+        return `https://tuchuangs.com/imgs/2022/12/11/27257ea2ad0f1701.png`;
       } else if (mapName == '烂柯山') {
-        return `https://s1.ax1x.com/2022/12/10/zWBh0e.png`;
+        return `https://tuchuangs.com/imgs/2022/12/11/d725304dcfa58848.png`;
       }
     },
     getCurrentStage() {
