@@ -184,6 +184,13 @@ export default {
       immediate: true,
     },
 
+    tableData: {
+      handler(val) {
+        // 存储数据
+        window.localStorage.setItem('timeData', JSON.stringify(val));
+      },
+    },
+
     // 自动填充类型
     map: {
       handler(val) {
@@ -221,6 +228,10 @@ export default {
     this.timer = setInterval(() => {
       this.currentTime = this.getCurrentTime(new Date().getTime());
     }, 1000);
+
+    if (window.localStorage.getItem('timeData')) {
+      this.tableData = JSON.parse(window.localStorage.getItem('timeData'));
+    }
   },
   beforeDestroy() {
     clearInterval(this.timer);
