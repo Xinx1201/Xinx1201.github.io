@@ -12,8 +12,13 @@ const routes = [
     children: [
       {
         path: 'Fame',
-        component: () => import('@/views/Fame'),
         name: 'Fame',
+        component: () => import('@/views/Fame'),
+      },
+      {
+        path: '/Time',
+        name: 'Time',
+        component: () => import('@/views/Time'),
       },
     ],
   },

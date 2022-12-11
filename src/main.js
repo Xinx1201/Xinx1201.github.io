@@ -12,17 +12,6 @@ Vue.use(ElementUI)
 // 引入整体样式
 import '@/assets/style/main.scss'
 
-// 路由导航
-router.beforeEach(async (to, from, next) => {
-  if (to.name === 'Fame') {
-    next()
-  } else {
-  }
-})
-
-
-
-
 Vue.config.productionTip = false
 new Vue({
   router,

@@ -11,6 +11,7 @@ module.exports = defineConfig({
         // 开发生产环境共同配置，配置别名
         alias: {
           '@': path.resolve(__dirname, './src'),
+          vue: 'vue/dist/vue.esm.js',
         }
       },
       //警告 webpack 的性能提示

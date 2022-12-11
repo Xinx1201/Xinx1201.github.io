@@ -27,6 +27,7 @@ export default {
   overflow: hidden;
 
   .container {
+    min-height: calc(100vh - 192px);
     padding: 20px;
   }
 }
