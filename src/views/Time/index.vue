@@ -25,6 +25,7 @@
             :label="item"
             :value="item"
           >
+            <span v-html="showKeyWorld(item)"></span>
           </el-option>
         </el-select>
       </div>
@@ -56,14 +57,24 @@
         <el-table-column prop="map" label="地点" align="center">
         </el-table-column>
         <el-table-column prop="type" label="类型" align="center">
+          <template slot-scope="scope">
+            <span v-html="showKeyWorld(scope.row.type)"></span>
+          </template>
         </el-table-column>
         <el-table-column prop="endTime" label="刷马时间" align="center">
         </el-table-column>
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
-            <el-button type="danger" @click="onDeletRecord(scope.row)"
-              >删除</el-button
+            <el-popconfirm
+              confirm-button-text="好的"
+              cancel-button-text="不用了"
+              icon="el-icon-info"
+              icon-color="red"
+              title="确定删除该条刷马信息？"
+              @confirm="onDeletRecord(scope.row)"
             >
+              <el-button slot="reference" type="danger">删除</el-button>
+            </el-popconfirm>
           </template>
         </el-table-column>
       </el-table>
@@ -134,6 +145,11 @@ export default {
         },
       ],
       typeOptions: ['龙子/麟驹', '绝尘/赤蛇/闪电', '里飞沙', '赤兔'],
+      variationOptions: {
+        鲲鹏岛: ['龙子/麟驹(变异)', '绝尘/赤蛇(变异)/闪电', '里飞沙', '赤兔'],
+        阴山大草原: ['龙子/麟驹', '绝尘(变异)/赤蛇/闪电', '里飞沙', '赤兔'],
+        黑戈壁: ['龙子(变异)/麟驹', '绝尘/赤蛇/闪电(变异)', '里飞沙', '赤兔'],
+      },
     };
   },
 
@@ -156,20 +172,24 @@ export default {
             .find((x) => x.label == '马场')
             .options.some((x) => x.name == val)
         ) {
+          this.typeOptions = this.variationOptions[val];
           this.type = '';
         } else if (
           this.mapOptinos
             .find((x) => x.label == '小马')
             .options.some((x) => x.name == val)
         ) {
+          this.typeOptions = ['龙子/麟驹', '绝尘/赤蛇/闪电', '里飞沙', '赤兔'];
           this.type = '龙子/麟驹';
         } else if (val == '黑龙沼') {
+          this.typeOptions = ['龙子/麟驹', '绝尘/赤蛇/闪电', '里飞沙', '赤兔'];
           this.type = '里飞沙';
         } else if (
           this.mapOptinos
             .find((x) => x.label == '大马')
             .options.some((x) => x.name == val)
         ) {
+          this.typeOptions = ['龙子/麟驹', '绝尘/赤蛇/闪电', '里飞沙', '赤兔'];
           this.type = '绝尘/赤蛇/闪电';
         }
       },
@@ -186,6 +206,7 @@ export default {
     clearInterval(this.timer);
   },
   methods: {
+    // 记录信息
     onClickRecord() {
       this.tableData.push({
         originTime: this.currentTime,
@@ -195,6 +216,19 @@ export default {
       });
     },
 
+    // 变红(变异)
+    showKeyWorld(val) {
+      if (val.indexOf('(变异)') !== -1 && '(变异)' !== '') {
+        return val.replace(
+          '(变异)',
+          '<font color="#f00">' + '(变异)' + '</font>'
+        );
+      } else {
+        return val;
+      }
+    },
+
+    // 删除
     onDeletRecord(row) {
       let index = this.tableData.findIndex((x) => x == row);
       this.tableData.splice(index, 1);
