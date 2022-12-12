@@ -57,6 +57,7 @@
 <script>
 import { filterKeyWord } from '@/utils';
 import horseMapOptions from '@/assets/data/horseMap.json';
+import serverList from '@/assets/data/server.json';
 const genNew = () => ({
   server: '破阵子', // 服务器
   map: '', // 地点
@@ -68,8 +69,7 @@ export default {
     return {
       form: genNew(),
 
-      serverList: ['破阵子'], // 服务器列表
-
+      serverList, // 服务器列表
       horseMapOptions, // 刷马地图数据
       defaultHorseOptions: ['龙子/麟驹', '绝尘/赤蛇/闪电', '里飞沙', '赤兔'], // 默认马选项
 
