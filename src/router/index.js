@@ -14,11 +14,17 @@ const routes = [
         path: 'Fame',
         name: 'Fame',
         component: () => import('@/views/Fame'),
+        meta: {
+          title: '楚天社'
+        }
       },
       {
         path: '/Time',
         name: 'Time',
         component: () => import('@/views/Time'),
+        meta: {
+          title: '刷马时间'
+        }
       },
     ],
   },
@@ -26,6 +32,10 @@ const routes = [
 
 const router = new VueRouter({
   routes
+})
+
+router.afterEach((to, from) => {
+  document.title = to.meta.title
 })
 
 export default router
