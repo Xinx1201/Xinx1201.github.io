@@ -86,12 +86,12 @@ export default {
           // 未超时的情况下 10/5 分钟提醒
           if (min == 10) {
             new Notification('准备刷马', {
-              body: `【${x.server}】的【${x.map}】将于10分钟后开始刷${x.type}`,
+              body: `【${x.server}】的【${x.map}】将于10分钟后开始刷->${x.type}`,
               icon: `${horseIcon[horse[randomInt(0, length - 1)]]}`,
             });
           } else if (min == 5) {
             new Notification('已经刷马', {
-              body: `【${x.server}】的【${x.map}】将于5分钟后开始刷${x.type}`,
+              body: `【${x.server}】的【${x.map}】将于5分钟后开始刷->${x.type}`,
               icon: `${horseIcon[horse[randomInt(0, length - 1)]]}`,
             });
           }
