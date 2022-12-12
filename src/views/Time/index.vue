@@ -14,6 +14,7 @@
         <span class="currentTime">{{ currentTime }}</span>
         <span class="symbol">+</span>
         <el-input-number
+          :min="0"
           v-model="intervalTime"
           placeholder="等待时间"
         ></el-input-number>
