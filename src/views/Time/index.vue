@@ -2,55 +2,19 @@
   <div class="container">
     <div class="calc">
       <div class="select">
-        <el-select
-          allow-create
-          filterable
-          default-first-option
-          v-model="server"
-          placeholder="服务器"
-        >
-          <el-option
-            v-for="item in serverList"
-            :key="item"
-            :label="item"
-            :value="item"
-          >
-          </el-option>
-        </el-select>
-        <el-select v-model="map" filterable placeholder="地图">
-          <el-option-group
-            v-for="group in horseMapOptions"
-            :key="group.label"
-            :label="group.label"
-          >
-            <el-option
-              v-for="item in group.options"
-              :key="item.name"
-              :label="item.name"
-              :value="item.name"
-            >
-            </el-option>
-          </el-option-group>
-        </el-select>
-
-        <el-select v-model="type" placeholder="马驹类型">
-          <el-option
-            v-for="item in defaultHorseOptions"
-            :key="item"
-            :label="item"
-            :value="item"
-          >
-            <span v-html="showKeyWorld(item)"></span>
-          </el-option>
-        </el-select>
+        <Operation @select="select" />
       </div>
-
+      <div
+        v-if="multipleSelection && multipleSelection.length"
+        class="deleteAll"
+      >
+        <el-button @click="multipleDelet">删除</el-button>
+      </div>
       <div class="main">
         <span class="currentTime">{{ currentTime }}</span>
         <span class="symbol">+</span>
         <el-input-number
           v-model="intervalTime"
-          :min="0"
           placeholder="等待时间"
         ></el-input-number>
         <span class="min">分钟</span>
@@ -62,44 +26,35 @@
       </div>
 
       <div class="record">
-        <el-button @click="onClickRecord">记录时间</el-button>
+        <el-button type="primary" @click="onClickRecord">记录时间</el-button>
       </div>
     </div>
     <div class="history">
-      <TableData :tableData="tableData" />
+      <DataTable :tableData="tableData" @selection="selection" ref="table" />
     </div>
   </div>
 </template>
 
 <script>
-import horseMapOptions from '@/assets/data/horseMap.json';
-import TableData from './tableData.vue';
+import Operation from './Operation.vue';
+import DataTable from './DataTable.vue';
+import { formatTimestamp, randomInt } from '@/utils';
+import horseIcon from '@/assets/data/horseIcon.json';
 export default {
   name: 'Time',
   components: {
-    TableData,
+    Operation,
+    DataTable,
   },
   data() {
     return {
+      form: {},
       tableData: [],
       currentTime: '', // 当前时间
       intervalTime: '', // 间隔时间
       endTime: '', // 结束时间
-      server: '', // 服务器
-      map: '', // 地点
-      type: '', // 马类型
 
-      serverList: ['破阵子'], // 服务器列表
-
-      horseMapOptions, // 刷马地图数据
-      defaultHorseOptions: ['龙子/麟驹', '绝尘/赤蛇/闪电', '里飞沙', '赤兔'], // 默认马选项
-
-      // 变异马选项
-      variationHorseOptions: {
-        鲲鹏岛: ['龙子/麟驹(变异)', '绝尘/赤蛇(变异)/闪电', '里飞沙', '赤兔'],
-        阴山大草原: ['龙子/麟驹', '绝尘(变异)/赤蛇/闪电', '里飞沙', '赤兔'],
-        黑戈壁: ['龙子(变异)/麟驹', '绝尘/赤蛇/闪电(变异)', '里飞沙', '赤兔'],
-      },
+      multipleSelection: [], // 多选数据
     };
   },
 
@@ -109,65 +64,56 @@ export default {
         let currentTs = Math.round(new Date().getTime());
         let ts = this.intervalTime * 60 * 1000; // 间隔时间 换成时间戳
         let endTs = currentTs + ts;
-        this.endTime = this.formatTime(endTs);
+        this.endTime = formatTimestamp(endTs);
       },
       immediate: true,
     },
 
+    // 当前时间
     currentTime: {
-      handler(val) {},
+      handler(val) {
+        let source = JSON.parse(JSON.stringify(this.tableData));
+        // console.log(val);
+        let currentTs = Math.round(new Date() / 1000);
+        // 根据当前时间 - 刷马时间(提前10分钟【准备】刷马提醒)
+        source.forEach((x) => {
+          let ts = Math.round(new Date(x.endTime) / 1000);
+          let min = (ts - currentTs) / 60;
+          let horse = x.type.split('/');
+          let length = x.type.split('/').length;
+
+          // 未超时的情况下 10/5 分钟提醒
+          if (min == 10) {
+            new Notification('准备刷马', {
+              body: `【${x.server}】的【${x.map}】将于10分钟后开始刷${x.type}`,
+              icon: `${horseIcon[horse[randomInt(0, length - 1)]]}`,
+            });
+          } else if (min == 5) {
+            new Notification('已经刷马', {
+              body: `【${x.server}】的$【{x.map}】将于5分钟后开始刷${x.type}`,
+              icon: `${horseIcon[horse[randomInt(0, length - 1)]]}`,
+            });
+          }
+
+          // 超时的情况下 5分钟添加删除线 10分钟删除该条信息
+          let overTime = (currentTs - ts) / 60;
+          if (overTime == 5) {
+            source.find((item) => item == x).overTime = 5;
+            this.tableData = source;
+          } else if (overTime >= 10) {
+            // 超过10分钟 则删除本条信息
+            let index = source.findIndex((item) => item == x);
+            source.splice(index, 1);
+            this.tableData = source;
+          }
+        });
+      },
     },
 
     tableData: {
       handler(val) {
         // 存储数据
         window.localStorage.setItem('timeData', JSON.stringify(val));
-      },
-    },
-
-    // 自动填充类型
-    map: {
-      handler(val) {
-        if (
-          this.horseMapOptions
-            .find((x) => x.label == '马场')
-            .options.some((x) => x.name == val)
-        ) {
-          this.defaultHorseOptions = this.variationHorseOptions[val];
-          this.type = '';
-        } else if (
-          this.horseMapOptions
-            .find((x) => x.label == '小马')
-            .options.some((x) => x.name == val)
-        ) {
-          this.defaultHorseOptions = [
-            '龙子/麟驹',
-            '绝尘/赤蛇/闪电',
-            '里飞沙',
-            '赤兔',
-          ];
-          this.type = '龙子/麟驹';
-        } else if (val == '黑龙沼') {
-          this.defaultHorseOptions = [
-            '龙子/麟驹',
-            '绝尘/赤蛇/闪电',
-            '里飞沙',
-            '赤兔',
-          ];
-          this.type = '里飞沙';
-        } else if (
-          this.horseMapOptions
-            .find((x) => x.label == '大马')
-            .options.some((x) => x.name == val)
-        ) {
-          this.defaultHorseOptions = [
-            '龙子/麟驹',
-            '绝尘/赤蛇/闪电',
-            '里飞沙',
-            '赤兔',
-          ];
-          this.type = '绝尘/赤蛇/闪电';
-        }
       },
     },
   },
@@ -189,7 +135,7 @@ export default {
   mounted() {
     clearInterval(this.timer);
     this.timer = setInterval(() => {
-      this.currentTime = this.formatTime(new Date().getTime());
+      this.currentTime = formatTimestamp(new Date().getTime());
     }, 1000);
 
     if (window.localStorage.getItem('timeData')) {
@@ -200,67 +146,49 @@ export default {
     clearInterval(this.timer);
   },
   methods: {
+    select(val) {
+      this.form = val;
+    },
+    // 选择数据
+    selection(val) {
+      this.multipleSelection = val;
+    },
+    // 删除全部
+    multipleDelet() {
+      this.$confirm('此操作将删除信息, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      })
+        .then(() => {
+          this.multipleSelection.forEach((item) => {
+            let index = this.tableData.findIndex((x) => x == item);
+            this.tableData.splice(index, 1);
+          });
+          this.$message({
+            type: 'success',
+            message: '删除成功!',
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除',
+          });
+        });
+    },
     // 记录信息
     onClickRecord() {
+      // 重置记录分钟数
+      this.intervalTime = '';
+      // 添加信息
       this.tableData.push({
         recordTime: this.currentTime,
-        server: this.server, // 服务器
-        map: this.map, // 地点
-        type: this.type, // 马的种类
+        server: this.form.server, // 服务器
+        map: this.form.map, // 地点
+        type: this.form.type, // 马的种类
         endTime: this.endTime,
       });
-    },
-
-    // 变红(变异)
-    showKeyWorld(val) {
-      if (val.indexOf('(变异)') !== -1 && '(变异)' !== '') {
-        return val.replace(
-          '(变异)',
-          '<font color="#f00">' + '(变异)' + '</font>'
-        );
-      } else {
-        return val;
-      }
-    },
-
-    formatTime(time) {
-      let date = new Date(time);
-      let year = date.getFullYear(); // 年
-      let month = date.getMonth() + 1; // 月
-      let day = date.getDate(); // 日
-      let hour = date.getHours(); // 时
-      let minutes = date.getMinutes(); // 分
-      let seconds = date.getSeconds(); //秒
-      // 给一位数的数据前面加 “0”
-      if (month >= 1 && month <= 9) {
-        month = '0' + month;
-      }
-      if (day >= 0 && day <= 9) {
-        day = '0' + day;
-      }
-      if (hour >= 0 && hour <= 9) {
-        hour = '0' + hour;
-      }
-      if (minutes >= 0 && minutes <= 9) {
-        minutes = '0' + minutes;
-      }
-      if (seconds >= 0 && seconds <= 9) {
-        seconds = '0' + seconds;
-      }
-
-      return (
-        year +
-        '-' +
-        month +
-        '-' +
-        day +
-        ' ' +
-        hour +
-        ':' +
-        minutes +
-        ':' +
-        seconds
-      );
     },
   },
 };
@@ -270,17 +198,24 @@ export default {
 .container {
   height: 100%;
   .calc {
-    height: 150px;
+    height: 100px;
     background-color: #fafafa;
     position: relative;
     .select {
       position: absolute;
-      right: 10px;
-      top: 10px;
+      right: 0;
+      top: -45px;
+    }
+
+    .deleteAll {
+      position: absolute;
+      left: 0;
+      bottom: 0;
     }
 
     .main {
-      line-height: 150px;
+      line-height: 100px;
+      margin-top: 10px;
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -310,9 +245,7 @@ export default {
     }
   }
   .history {
-    margin-top: 20px;
-    height: 74vh;
-    width: 100%;
+    height: 100%;
   }
 }
 </style>
