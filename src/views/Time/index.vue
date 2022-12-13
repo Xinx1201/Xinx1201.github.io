@@ -74,9 +74,8 @@ export default {
     currentTime: {
       handler(val) {
         let source = JSON.parse(JSON.stringify(this.tableData));
-        // console.log(val);
         let currentTs = Math.round(new Date() / 1000);
-        // 根据当前时间 - 刷马时间(提前10分钟【准备】刷马提醒)
+        // 根据当前时间 - 刷马时间(提前m10分钟【准备】刷马提醒)
         source.forEach((x) => {
           let ts = Math.round(new Date(x.endTime) / 1000);
           let min = (ts - currentTs) / 60;
@@ -84,17 +83,17 @@ export default {
           let length = x.type.split('/').length;
 
           // 未超时的情况下 10/5 分钟提醒
-          if (min == 10) {
-            new Notification('准备刷马', {
-              body: `【${x.server}】的【${x.map}】将于10分钟后开始刷->${x.type}`,
-              icon: `${horseIcon[horse[randomInt(0, length - 1)]]}`,
-            });
-          } else if (min == 5) {
-            new Notification('已经刷马', {
-              body: `【${x.server}】的【${x.map}】将于5分钟后开始刷->${x.type}`,
-              icon: `${horseIcon[horse[randomInt(0, length - 1)]]}`,
-            });
-          }
+          // if (min == 10) {
+          //   new Notification('准备刷马', {
+          //     body: `【${x.server}】的【${x.map}】将于10分钟后开始刷->${x.type}`,
+          //     icon: `${horseIcon[horse[randomInt(0, length - 1)]]}`,
+          //   });
+          // } else if (min == 5) {
+          //   new Notification('已经刷马', {
+          //     body: `【${x.server}】的【${x.map}】将于5分钟后开始刷->${x.type}`,
+          //     icon: `${horseIcon[horse[randoInt(0, length - 1)]]}`,
+          //   });
+          // }
 
           // 超时的情况下 5分钟添加删除线 10分钟删除该条信息
           let overTime = (currentTs - ts) / 60;
