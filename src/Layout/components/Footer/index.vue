@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <span>
-      <el-link @click="onClickAuthor">{{ author }}</el-link>
+      <el-link :underline="false" @click="onClickAuthor">{{ author }}</el-link>
     </span>
   </div>
 </template>
