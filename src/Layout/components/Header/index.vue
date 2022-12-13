@@ -7,7 +7,7 @@
         class="el-menu-demo"
         mode="horizontal"
       >
-        <el-menu-item v-for="(item, i) in navList" :key="i" :index="item.path">
+        <el-menu-item v-for="(item, i) in menu" :key="i" :index="item.path">
           {{ item.navItem }}
         </el-menu-item>
       </el-menu>
@@ -16,16 +16,27 @@
 </template>
 
 <script>
+import menu from '@/router/modules';
 export default {
   name: 'Header',
   components: {},
   data() {
-    return {
-      navList: [
-        { path: '/Fame', navItem: '楚天社' },
-        { path: '/Time', navItem: '抓马时间' },
-      ],
-    };
+    return {};
+  },
+
+  computed: {
+    menu: {
+      get() {
+        let navList = [];
+        menu[0].children.forEach((item) => {
+          navList.push({
+            path: item.path,
+            navItem: item.meta.title,
+          });
+        });
+        return navList;
+      },
+    },
   },
   methods: {},
 };
