@@ -51,6 +51,7 @@ export default {
     //连接关闭
     websocketclose(e) {
       console.log('连接关闭');
+      this.initWebSocket();
     },
   },
 };

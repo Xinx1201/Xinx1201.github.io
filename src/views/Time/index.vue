@@ -11,7 +11,23 @@
         <el-button @click="multipleDelet">删除</el-button>
       </div>
       <div class="main">
-        <span class="currentTime">{{ currentTime }}</span>
+        <span
+          v-if="!isChangeCurrentTime"
+          class="currentTime"
+          @dblclick="onClickEdit"
+          >{{ currentTime }}</span
+        >
+        <template v-else>
+          <span @dblclick="onClickEdit" class="customTime">{{
+            currentTime.split(' ')[0]
+          }}</span>
+          <el-time-picker
+            v-model="customTime"
+            value-format="HH:mm:ss"
+            placeholder="任意时间点"
+          >
+          </el-time-picker>
+        </template>
         <span class="symbol">+</span>
         <el-input-number
           :min="0"
@@ -55,14 +71,26 @@ export default {
       intervalTime: '', // 间隔时间
       endTime: '', // 结束时间
 
+      customTime: '', // 自定义开始时间
+      customcurrentTime: '', // 自定义开始时间
+      isChangeCurrentTime: false, // 是否改变现在的时间
+
       multipleSelection: [], // 多选数据
     };
   },
 
   watch: {
+    customTime: {
+      handler(val) {
+        this.customcurrentTime = this.currentTime.split(' ')[0] + ' ' + val;
+      },
+    },
     intervalTime: {
       handler(val) {
-        let currentTs = Math.round(new Date().getTime());
+        console.log(this.customcurrentTime);
+        let currentTs = !this.isChangeCurrentTime
+          ? Math.round(new Date().getTime())
+          : Math.round(new Date(this.customcurrentTime).getTime());
         let ts = this.intervalTime * 60 * 1000; // 间隔时间 换成时间戳
         let endTs = currentTs + ts;
         this.endTime = formatTimestamp(endTs);
@@ -97,7 +125,7 @@ export default {
 
           // 超时的情况下 5分钟添加删除线 10分钟删除该条信息
           let overTime = (currentTs - ts) / 60;
-          if (overTime == 5) {
+          if (overTime == 5 || [6, 7, 8, 9].includes(Number(overTime))) {
             source.find((item) => item == x).overTime = 5;
             this.tableData = source;
           } else if (overTime >= 10) {
@@ -149,6 +177,9 @@ export default {
     select(val) {
       this.form = val;
     },
+    onClickEdit() {
+      this.isChangeCurrentTime = !this.isChangeCurrentTime;
+    },
     // 选择数据
     selection(val) {
       this.multipleSelection = val;
@@ -183,12 +214,15 @@ export default {
       this.intervalTime = '';
       // 添加信息
       this.tableData.push({
-        recordTime: this.currentTime,
+        recordTime: !this.isChangeCurrentTime
+          ? this.currentTime
+          : this.customcurrentTime,
         server: this.form.server, // 服务器
         map: this.form.map, // 地点
         type: this.form.type, // 马的种类
         endTime: this.endTime,
       });
+      this.isChangeCurrentTime = false;
     },
   },
 };
@@ -224,6 +258,10 @@ export default {
       .currentTime,
       .endTime {
         width: 200px;
+      }
+
+      .customTime {
+        margin-right: 20px;
       }
 
       .min {
