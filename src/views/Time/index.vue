@@ -162,7 +162,6 @@ export default {
   created() {},
 
   mounted() {
-    console.log(Notification.permission);
     this.checkNotifyPermission();
     clearInterval(this.timer);
     this.timer = setInterval(() => {
@@ -243,11 +242,11 @@ export default {
 
     // 通知权限
     checkNotifyPermission() {
-      console.log(2);
       if (window.Notification) {
         // 浏览器通知--window.Notification
         if (Notification.permission == 'granted') {
           console.log('允许通知');
+          // 记录到本地当前浏览器的通知权限
           this.notifyPermission = true;
           window.localStorage.setItem('notifyPermission', true);
         } else if (Notification.permission != 'denied') {
@@ -255,9 +254,11 @@ export default {
           Notification.requestPermission((permission) => {
             console.log(permission);
             if (permission == 'denied') {
+              // 记录到本地当前浏览器的通知权限
               this.notifyPermission = false;
               window.localStorage.setItem('notifyPermission', false);
             } else {
+              // 如果选择的为允许 则自动勾选通知权限
               this.notify = true;
               window.localStorage.setItem('notify', true);
               this.notifyPermission = true;
@@ -265,6 +266,7 @@ export default {
             }
           });
         } else if (Notification.permission == 'denied') {
+          // 如果当前权限都为否，都禁止
           this.notify = false;
           window.localStorage.setItem('notify', false);
           this.notifyPermission = false;
