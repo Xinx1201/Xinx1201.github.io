@@ -23,7 +23,7 @@
         </el-timeline>
       </el-card>
     </div>
-    <div class="right" v-if="false">
+    <div class="right">
       <!-- 显示 对应地图 -->
       <div class="map-box">
         <!-- 地图 -->
