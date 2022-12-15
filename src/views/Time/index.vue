@@ -43,12 +43,19 @@
       </div>
 
       <div class="notify">
-        <el-checkbox
-          @change="changeNotify"
-          v-model="notify"
-          :disabled="!notifyPermission"
-          >通知</el-checkbox
+        <el-tooltip
+          class="item"
+          effect="dark"
+          content="仅为当前页面时,可弹窗提示"
+          placement="top-start"
         >
+          <el-checkbox
+            @change="changeNotify"
+            v-model="notify"
+            :disabled="!notifyPermission"
+            >通知</el-checkbox
+          >
+        </el-tooltip>
       </div>
 
       <div class="record">
