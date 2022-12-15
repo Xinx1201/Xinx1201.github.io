@@ -43,8 +43,11 @@
       </div>
 
       <div class="notify">
-        <el-checkbox v-model="notify" :disabled="!notifyPermission"
-          >允许通知</el-checkbox
+        <el-checkbox
+          @change="changeNotify"
+          v-model="notify"
+          :disabled="!notifyPermission"
+          >通知</el-checkbox
         >
       </div>
 
@@ -81,37 +84,13 @@ export default {
       customcurrentTime: '', // 自定义开始时间
       isChangeCurrentTime: false, // 是否改变现在的时间
       notify: false, // 默认不允许通知
-      notifyPermission: true, // 默认为允许权限
+      notifyPermission: null, // 默认为允许权限
 
       multipleSelection: [], // 多选数据
     };
   },
 
   watch: {
-    notify: {
-      handler(val) {
-        if (val) {
-          if (window.Notification) {
-            // 浏览器通知--window.Notification
-            if (Notification.permission == 'granted') {
-              console.log('允许通知');
-            } else if (Notification.permission != 'denied') {
-              console.log('需要通知权限');
-              Notification.requestPermission((permission) => {
-                console.log(permission);
-                if (permission == 'denied') {
-                  this.notify = false;
-                  this.notifyPermission = false;
-                }
-              });
-            }
-          } else {
-            console.error('浏览器不支持Notification');
-          }
-        }
-        window.localStorage.setItem('notify', JSON.stringify(val));
-      },
-    },
     customTime: {
       handler(val) {
         this.customcurrentTime = this.currentTime.split(' ')[0] + ' ' + val;
@@ -183,6 +162,8 @@ export default {
   created() {},
 
   mounted() {
+    console.log(Notification.permission);
+    this.checkNotifyPermission();
     clearInterval(this.timer);
     this.timer = setInterval(() => {
       this.currentTime = formatTimestamp(new Date().getTime());
@@ -191,6 +172,11 @@ export default {
     // 获取配置
     if (window.localStorage.getItem('notify')) {
       this.notify = JSON.parse(window.localStorage.getItem('notify'));
+    }
+    if (window.localStorage.getItem('notifyPermission')) {
+      this.notifyPermission = JSON.parse(
+        window.localStorage.getItem('notifyPermission')
+      );
     }
     if (window.localStorage.getItem('timeData')) {
       this.tableData = JSON.parse(window.localStorage.getItem('timeData'));
@@ -249,6 +235,44 @@ export default {
         endTime: this.endTime,
       });
       this.isChangeCurrentTime = false;
+    },
+
+    changeNotify() {
+      window.localStorage.setItem('notify', this.notify);
+    },
+
+    // 通知权限
+    checkNotifyPermission() {
+      console.log(2);
+      if (window.Notification) {
+        // 浏览器通知--window.Notification
+        if (Notification.permission == 'granted') {
+          console.log('允许通知');
+          this.notifyPermission = true;
+          window.localStorage.setItem('notifyPermission', true);
+        } else if (Notification.permission != 'denied') {
+          console.log('需要通知权限');
+          Notification.requestPermission((permission) => {
+            console.log(permission);
+            if (permission == 'denied') {
+              this.notifyPermission = false;
+              window.localStorage.setItem('notifyPermission', false);
+            } else {
+              this.notify = true;
+              window.localStorage.setItem('notify', true);
+              this.notifyPermission = true;
+              window.localStorage.setItem('notifyPermission', true);
+            }
+          });
+        } else if (Notification.permission == 'denied') {
+          this.notify = false;
+          window.localStorage.setItem('notify', false);
+          this.notifyPermission = false;
+          window.localStorage.setItem('notifyPermission', false);
+        }
+      } else {
+        console.error('浏览器不支持Notification');
+      }
     },
   },
 };
