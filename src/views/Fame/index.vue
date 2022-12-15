@@ -32,7 +32,7 @@
       <div class="map-box">
         <!-- 地图 -->
         <div
-          v-if="mapName && false"
+          v-if="mapName"
           class="map"
           :style="{
             background: 'url(' + getMap(mapName) + ') no-repeat',
@@ -52,7 +52,6 @@
         </div>
         <!-- 当前阶段Dot -->
         <span
-          v-if="false"
           :id="currentStageTitle"
           style="position: absolute"
           class="dot"
@@ -60,7 +59,7 @@
         <!-- 下一阶段Dot -->
         <span
           :id="nextStageTitle"
-          v-if="nextStageTitle.split('/').length != 2 && false"
+          v-if="nextStageTitle.split('/').length != 2"
           style="position: absolute"
           class="nextDot"
         ></span>
