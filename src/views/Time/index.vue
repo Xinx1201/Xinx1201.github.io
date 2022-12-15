@@ -69,9 +69,10 @@
 </template>
 
 <script>
+import dayjs from 'dayjs';
 import Operation from './Operation.vue';
 import DataTable from './DataTable.vue';
-import { formatTimestamp, randomInt } from '@/utils';
+import { dateToString, randomInt } from '@/utils';
 import horseIcon from '@/assets/data/horseIcon.json';
 export default {
   name: 'Time',
@@ -106,11 +107,11 @@ export default {
     intervalTime: {
       handler(val) {
         let currentTs = !this.isChangeCurrentTime
-          ? Math.round(new Date().getTime())
-          : Math.round(new Date(this.customcurrentTime).getTime());
+          ? dayjs().valueOf()
+          : dayjs(this.customcurrentTime).valueOf();
         let ts = this.intervalTime * 60 * 1000; // 间隔时间 换成时间戳
         let endTs = currentTs + ts;
-        this.endTime = formatTimestamp(endTs);
+        this.endTime = dateToString(endTs, 'datetime');
       },
       immediate: true,
     },
@@ -119,23 +120,25 @@ export default {
     currentTime: {
       handler(val) {
         let source = JSON.parse(JSON.stringify(this.tableData));
-        let currentTs = Math.round(new Date() / 1000);
-        // 根据当前时间 - 刷马时间(提前m10分钟【准备】刷马提醒)
+        let currentTs = dayjs().valueOf();
+        let fiveMinutes = 300;
+        let tenMinutes = 600;
         source.forEach((x) => {
-          let ts = Math.round(new Date(x.endTime) / 1000);
-          let min = (ts - currentTs) / 60;
+          let ts = dayjs(x.endTime).valueOf();
+
+          // 根据当前时间 - 刷马时间(提前10分钟【准备】刷马提醒)
+          let min = dayjs(ts).diff(currentTs, 'second');
           let horse = x.type.split('/');
           let length = x.type.split('/').length;
-
           // 未超时的情况下 10/5 分钟提醒
           // 在允许通知的情况下进行通知
           if (this.notify) {
-            if (min == 10) {
+            if (min == tenMinutes) {
               new Notification('准备刷马', {
                 body: `【${x.server}】的【${x.map}】将于10分钟后开始刷->${x.type}`,
                 icon: `${horseIcon[horse[randomInt(0, length - 1)]]}`,
               });
-            } else if (min == 5) {
+            } else if (min == fiveMinutes) {
               new Notification('已经刷马', {
                 body: `【${x.server}】的【${x.map}】将于5分钟后开始刷->${x.type}`,
                 icon: `${horseIcon[horse[randomInt(0, length - 1)]]}`,
@@ -144,11 +147,11 @@ export default {
           }
 
           // 超时的情况下 5分钟添加删除线 10分钟删除该条信息
-          let overTime = (currentTs - ts) / 60;
-          if (overTime == 5 || [6, 7, 8, 9].includes(Number(overTime))) {
+          let overTime = dayjs(currentTs).diff(ts, 'second');
+          if (overTime == fiveMinutes) {
             source.find((item) => item == x).overTime = 5;
             this.tableData = source;
-          } else if (overTime >= 10) {
+          } else if (overTime >= tenMinutes) {
             // 超过10分钟 则删除本条信息
             let index = source.findIndex((item) => item == x);
             source.splice(index, 1);
@@ -172,7 +175,7 @@ export default {
     this.checkNotifyPermission();
     clearInterval(this.timer);
     this.timer = setInterval(() => {
-      this.currentTime = formatTimestamp(new Date().getTime());
+      this.currentTime = dateToString(dayjs().valueOf(), 'datetime');
     }, 1000);
 
     // 获取配置

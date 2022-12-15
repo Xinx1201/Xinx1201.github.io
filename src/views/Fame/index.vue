@@ -11,23 +11,19 @@
           <el-timeline-item
             v-for="(stage, index) in currentStage.stages"
             :key="index"
-            :color="new Date().getMinutes() >= stage.time ? '#0bbd87' : ''"
+            :color="today.minute() >= stage.time ? '#0bbd87' : ''"
           >
             <div
-              :style="
-                new Date().getMinutes() >= `${stage.time}`
-                  ? 'color:#0bbd87'
-                  : ''
-              "
+              :style="today.minute() >= `${stage.time}` ? 'color:#0bbd87' : ''"
             >
               <div>{{ stage.name }}</div>
-              <div>{{ new Date().getHours() + ':' + stage.time }}</div>
+              <div>{{ today.hour() + ':' + stage.time }}</div>
             </div>
           </el-timeline-item>
         </el-timeline>
       </el-card>
     </div>
-    <div class="right">
+    <div class="right" v-if="false">
       <!-- 显示 对应地图 -->
       <div class="map-box">
         <!-- 地图 -->
@@ -69,7 +65,8 @@
 </template>
 
 <script>
-import { formatTime } from '@/utils';
+import dayjs from 'dayjs';
+import { dateToString } from '@/utils';
 import fameData from '@/assets/data/fame.json';
 export default {
   name: 'Fame',
@@ -82,11 +79,14 @@ export default {
       nextStageTitle: '', // 下一阶段名称
       mapName: '', // 地图名称
       timer: null, // 定时器
+
+      today: undefined,
     };
   },
   mounted() {
     clearInterval(this.timer);
     this.timer = setInterval(() => {
+      this.today = dayjs();
       this.getCurrentStage();
     }, 1000);
   },
@@ -106,18 +106,18 @@ export default {
       }
     },
     getCurrentStage() {
-      let HourType = new Date().getHours() % 2 ? 'odd' : 'even';
-      let minType = new Date().getMinutes() < 30 ? 'Zero' : 'Half';
+      let HourType = dayjs().hour() % 2 ? 'odd' : 'even';
+      let minType = dayjs().minute() < 30 ? 'Zero' : 'Half';
       // 根据当前(时、分)获取当前名望阶段
       this.currentStage = this.fameData[`${HourType}`][`${minType}`];
       // 当前地图名称
       this.mapName = this.currentStage.title;
 
-      this.currentTime = formatTime();
+      this.currentTime = dateToString(dayjs().valueOf(), 'time');
 
       // 获取到所有完成阶段的列表
       let filterFinishStageArr = this.currentStage.stages.filter((x) => {
-        if (new Date().getMinutes() >= x.time) {
+        if (dayjs().minute() >= x.time) {
           return x;
         }
       });
