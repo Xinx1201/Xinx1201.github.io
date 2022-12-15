@@ -24,14 +24,14 @@
     >
       <el-option-group
         v-for="group in horseMapOptions"
-        :key="group.label"
-        :label="group.label"
+        :key="group.type"
+        :label="group.type"
       >
         <el-option
-          v-for="item in group.options"
-          :key="item.name"
-          :label="item.name"
-          :value="item.name"
+          v-for="item in group.positions"
+          :key="item.map"
+          :label="item.map"
+          :value="item.map"
         >
         </el-option>
       </el-option-group>
@@ -88,15 +88,15 @@ export default {
       handler(val) {
         if (
           this.horseMapOptions
-            .find((x) => x.label == '马场')
-            .options.some((x) => x.name == val)
+            .find((x) => x.type == '马场')
+            .positions.some((x) => x.map == val)
         ) {
           this.defaultHorseOptions = this.variationHorseOptions[val];
           this.form.type = '';
         } else if (
           this.horseMapOptions
-            .find((x) => x.label == '小马')
-            .options.some((x) => x.name == val)
+            .find((x) => x.type == '小马')
+            .positions.some((x) => x.map == val)
         ) {
           this.defaultHorseOptions = [
             '龙子/麟驹',
@@ -115,8 +115,8 @@ export default {
           this.form.type = '里飞沙';
         } else if (
           this.horseMapOptions
-            .find((x) => x.label == '大马')
-            .options.some((x) => x.name == val)
+            .find((x) => x.type == '大马')
+            .positions.some((x) => x.map == val)
         ) {
           this.defaultHorseOptions = [
             '龙子/麟驹',

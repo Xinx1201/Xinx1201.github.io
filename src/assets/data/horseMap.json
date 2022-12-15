@@ -1,49 +1,49 @@
 [
   {
-    "label": "马场",
-    "options": [
+    "type": "马场",
+    "positions": [
       {
-        "name": "黑戈壁"
+        "map": "黑戈壁"
       },
       {
-        "name": "鲲鹏岛"
+        "map": "鲲鹏岛"
       },
       {
-        "name": "阴山大草原"
+        "map": "阴山大草原"
       }
     ]
   },
   {
-    "label": "大马",
-    "options": [
+    "type": "大马",
+    "positions": [
       {
-        "name": "昆仑"
+        "map": "昆仑"
       },
       {
-        "name": "南屏山"
+        "map": "南屏山"
       },
       {
-        "name": "白龙口"
+        "map": "白龙口"
       },
       {
-        "name": "无量山"
+        "map": "无量山"
       },
       {
-        "name": "黑龙沼"
+        "map": "黑龙沼"
       }
     ]
   },
   {
-    "label": "小马",
-    "options": [
+    "type": "小马",
+    "positions": [
       {
-        "name": "金水镇"
+        "map": "金水镇"
       },
       {
-        "name": "巴陵县"
+        "map": "巴陵县"
       },
       {
-        "name": "龙门荒漠"
+        "map": "龙门荒漠"
       }
     ]
   }

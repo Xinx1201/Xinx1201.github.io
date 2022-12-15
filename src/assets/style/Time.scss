@@ -1,0 +1,63 @@
+.container {
+  height: 100%;
+  .calc {
+    height: 100px;
+    background-color: #fafafa;
+    position: relative;
+    .select {
+      position: absolute;
+      right: 0;
+      top: -45px;
+    }
+
+    .deleteAll {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+
+    .main {
+      line-height: 100px;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+
+      .currentTime,
+      .endTime {
+        width: 200px;
+      }
+
+      .customTime {
+        margin-right: 20px;
+      }
+
+      .min {
+        width: 50px;
+        font-size: 20px;
+      }
+
+      .symbol {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0 20px;
+      }
+    }
+
+    .notify {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .record {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+  }
+  .history {
+    height: 100%;
+  }
+}

@@ -42,6 +42,12 @@
         </template>
       </div>
 
+      <div class="notify">
+        <el-checkbox v-model="notify" :disabled="!notifyPermission"
+          >允许通知</el-checkbox
+        >
+      </div>
+
       <div class="record">
         <el-button type="primary" @click="onClickRecord">记录时间</el-button>
       </div>
@@ -74,12 +80,38 @@ export default {
       customTime: '', // 自定义开始时间
       customcurrentTime: '', // 自定义开始时间
       isChangeCurrentTime: false, // 是否改变现在的时间
+      notify: false, // 默认不允许通知
+      notifyPermission: true, // 默认为允许权限
 
       multipleSelection: [], // 多选数据
     };
   },
 
   watch: {
+    notify: {
+      handler(val) {
+        if (val) {
+          if (window.Notification) {
+            // 浏览器通知--window.Notification
+            if (Notification.permission == 'granted') {
+              console.log('允许通知');
+            } else if (Notification.permission != 'denied') {
+              console.log('需要通知权限');
+              Notification.requestPermission((permission) => {
+                console.log(permission);
+                if (permission == 'denied') {
+                  this.notify = false;
+                  this.notifyPermission = false;
+                }
+              });
+            }
+          } else {
+            console.error('浏览器不支持Notification');
+          }
+        }
+        window.localStorage.setItem('notify', JSON.stringify(val));
+      },
+    },
     customTime: {
       handler(val) {
         this.customcurrentTime = this.currentTime.split(' ')[0] + ' ' + val;
@@ -87,7 +119,6 @@ export default {
     },
     intervalTime: {
       handler(val) {
-        console.log(this.customcurrentTime);
         let currentTs = !this.isChangeCurrentTime
           ? Math.round(new Date().getTime())
           : Math.round(new Date(this.customcurrentTime).getTime());
@@ -111,17 +142,20 @@ export default {
           let length = x.type.split('/').length;
 
           // 未超时的情况下 10/5 分钟提醒
-          // if (min == 10) {
-          //   new Notification('准备刷马', {
-          //     body: `【${x.server}】的【${x.map}】将于10分钟后开始刷->${x.type}`,
-          //     icon: `${horseIcon[horse[randomInt(0, length - 1)]]}`,
-          //   });
-          // } else if (min == 5) {
-          //   new Notification('已经刷马', {
-          //     body: `【${x.server}】的【${x.map}】将于5分钟后开始刷->${x.type}`,
-          //     icon: `${horseIcon[horse[randoInt(0, length - 1)]]}`,
-          //   });
-          // }
+          // 在允许通知的情况下进行通知
+          if (this.notify) {
+            if (min == 10) {
+              new Notification('准备刷马', {
+                body: `【${x.server}】的【${x.map}】将于10分钟后开始刷->${x.type}`,
+                icon: `${horseIcon[horse[randomInt(0, length - 1)]]}`,
+              });
+            } else if (min == 5) {
+              new Notification('已经刷马', {
+                body: `【${x.server}】的【${x.map}】将于5分钟后开始刷->${x.type}`,
+                icon: `${horseIcon[horse[randoInt(0, length - 1)]]}`,
+              });
+            }
+          }
 
           // 超时的情况下 5分钟添加删除线 10分钟删除该条信息
           let overTime = (currentTs - ts) / 60;
@@ -146,19 +180,7 @@ export default {
     },
   },
 
-  created() {
-    if (window.Notification) {
-      // 浏览器通知--window.Notification
-      if (Notification.permission == 'granted') {
-        console.log('允许通知');
-      } else if (Notification.permission != 'denied') {
-        console.log('需要通知权限');
-        Notification.requestPermission((permission) => {});
-      }
-    } else {
-      console.error('浏览器不支持Notification');
-    }
-  },
+  created() {},
 
   mounted() {
     clearInterval(this.timer);
@@ -166,6 +188,10 @@ export default {
       this.currentTime = formatTimestamp(new Date().getTime());
     }, 1000);
 
+    // 获取配置
+    if (window.localStorage.getItem('notify')) {
+      this.notify = JSON.parse(window.localStorage.getItem('notify'));
+    }
     if (window.localStorage.getItem('timeData')) {
       this.tableData = JSON.parse(window.localStorage.getItem('timeData'));
     }
@@ -229,61 +255,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-  height: 100%;
-  .calc {
-    height: 100px;
-    background-color: #fafafa;
-    position: relative;
-    .select {
-      position: absolute;
-      right: 0;
-      top: -45px;
-    }
-
-    .deleteAll {
-      position: absolute;
-      left: 0;
-      bottom: 0;
-    }
-
-    .main {
-      line-height: 100px;
-      margin-top: 10px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-
-      .currentTime,
-      .endTime {
-        width: 200px;
-      }
-
-      .customTime {
-        margin-right: 20px;
-      }
-
-      .min {
-        width: 50px;
-        font-size: 20px;
-      }
-
-      .symbol {
-        font-size: 20px;
-        font-weight: bold;
-        margin: 0 20px;
-      }
-    }
-
-    .record {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-    }
-  }
-  .history {
-    height: 100%;
-  }
-}
+@import '@/assets/style/Time.scss';
 </style>
