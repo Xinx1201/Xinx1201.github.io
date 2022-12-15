@@ -138,7 +138,7 @@ export default {
             } else if (min == 5) {
               new Notification('已经刷马', {
                 body: `【${x.server}】的【${x.map}】将于5分钟后开始刷->${x.type}`,
-                icon: `${horseIcon[horse[randoInt(0, length - 1)]]}`,
+                icon: `${horseIcon[horse[randomInt(0, length - 1)]]}`,
               });
             }
           }
