@@ -12,14 +12,14 @@ module.exports = {
     https: false, // https:{type:Boolean}
     open: false, // 配置自动启动浏览器
     proxy: {// 配置跨域
-      '/api': {
-        target: '', // 要访问的跨域域名
-        ws: true,
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': ''
-        },
-      }
+      // '/api': {
+      //   target: '', // 要访问的跨域域名
+      //   ws: true,
+      //   changeOrigin: true,
+      //   pathRewrite: {
+      //     '^/api': ''
+      //   },
+      // }
     }
   },
   lintOnSave: process.env.NODE_ENV !== 'production' ? 'error' : false,
