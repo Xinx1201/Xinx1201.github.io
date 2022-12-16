@@ -1,31 +1,54 @@
-const { defineConfig } = require('@vue/cli-service')
 const path = require('path')
 
-module.exports = defineConfig({
-  transpileDependencies: true,
+function resolve (dir) {
+  return path.join(__dirname, dir)
+}
 
-  configureWebpack: config => {
-    Object.assign(config, {
-      resolve: {
-        extensions: ['.js', '.vue', '.json'],
-        // 开发生产环境共同配置，配置别名
-        alias: {
-          '@': path.resolve(__dirname, './src'),
-          vue: 'vue/dist/vue.esm.js',
-        }
-      },
-      //警告 webpack 的性能提示
-      performance: {
-        hints: 'warning',
-        //入口起点的最大体积
-        maxEntrypointSize: 9999999,
-        //生成文件的最大体积
-        maxAssetSize: 9999999,
-        //只给出 js 文件的性能提示
-        assetFilter: function (assetFilename) {
-          return assetFilename.endsWith('.js')
-        }
+module.exports = {
+  publicPath: '/',
+  devServer: {
+    // host: "localhost",
+    port: 8090, // 端口号
+    https: false, // https:{type:Boolean}
+    open: false, // 配置自动启动浏览器
+    proxy: {// 配置跨域
+      '/api': {
+        target: '', // 要访问的跨域域名
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        },
       }
-    })
+    }
   },
-})
+  lintOnSave: process.env.NODE_ENV !== 'production' ? 'error' : false,
+  productionSourceMap: false,
+  configureWebpack: {
+    resolve: {
+      alias: {
+        'vue$': "vue/dist/vue.js",
+        package: resolve('package.json'),
+        '@': path.resolve(__dirname, './src'),
+      },
+    },
+  },
+  chainWebpack (config) {
+    // set svg-sprite-loader
+    config.module
+      .rule('svg')
+      .exclude.add(resolve('src/assets/svg'))
+      .end()
+    config.module
+      .rule('icons')
+      .test(/\.svg$/)
+      .include.add(resolve('src/assets/svg'))
+      .end()
+      .use('svg-sprite-loader')
+      .loader('svg-sprite-loader')
+      .options({
+        symbolId: 'icon-[name]',
+      })
+      .end()
+  },
+}

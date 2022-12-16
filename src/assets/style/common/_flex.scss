@@ -1,0 +1,65 @@
+@mixin flex {
+  display: flex;
+}
+
+.is-flex {
+  @include flex;
+}
+
+.flex-row {
+  @include flex;
+
+  flex-direction: row;
+  align-items: center;
+}
+
+.flex-column {
+  @include flex;
+
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex-as-end {
+  align-self: flex-end;
+}
+
+.flex-as-stretch {
+  align-self: stretch;
+}
+
+.flex-ai-stretch {
+  align-items: stretch;
+}
+
+.flex-between {
+  justify-content: space-between;
+}
+
+.flex-center {
+  justify-content: center;
+}
+
+.flex-around {
+  justify-content: space-around;
+}
+
+.flex-end {
+  justify-content: flex-end;
+}
+
+.flex-baseline {
+  align-items: baseline;
+}
+
+.flex-auto {
+  flex: auto;
+}
+
+.flex-none {
+  flex: none;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}

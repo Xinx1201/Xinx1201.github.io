@@ -1,4 +1,10 @@
 export default {
+  API: {
+    DEFAULT: {
+      ROOT: '/api/',
+      ROOT_DEV: '/api/',
+    }
+  },
   DATE: {
     HM: 'HH:mm',
     HMS: 'HH:mm:ss',

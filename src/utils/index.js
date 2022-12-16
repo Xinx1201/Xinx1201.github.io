@@ -1,5 +1,11 @@
 import dayjs from 'dayjs'
+import qs from 'query-string'
 import config from '@/utils/config'
+
+// 将URL中的参数转换成对象
+export function parseQuery () {
+  return qs.parse(location.search)
+}
 
 // 时间戳格式化
 export function dateToString (timestamp, format = 'date') {

@@ -16,7 +16,7 @@
             <div
               :style="today.minute() >= `${stage.time}` ? 'color:#0bbd87' : ''"
             >
-              <div>{{ stage.name }}</div>
+              <div><copyable :value="stage.name" /></div>
               <div>{{ today.hour() + ':' + stage.time }}</div>
             </div>
           </el-timeline-item>
