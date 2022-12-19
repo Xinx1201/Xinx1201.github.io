@@ -4,3 +4,8 @@ body {
   margin: 0px;
   padding: 0px;
 }
+
+// 解决展开表格因为element-ui版本过高没有边距的问题
+.el-table__expanded-cell[class*='cell'] {
+  padding: 20px 50px;
+}

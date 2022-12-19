@@ -22,6 +22,14 @@ export default {
       }
     },
     {
+      path: '/UID',
+      name: 'UID',
+      component: () => import('@/views/UID'),
+      meta: {
+        title: 'UID对应表'
+      }
+    },
+    {
       path: '/Test',
       name: 'Test',
       component: () => import('@/views/Test'),
