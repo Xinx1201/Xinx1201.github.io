@@ -2,7 +2,9 @@
   <div class="flex-column flex-ai-stretch">
     <Operation class="flex-none" @select="select" />
     <DataTable
-      :data="filterUid ? uidData.filter((x) => x.uid == filterUid) : uidData"
+      :tableData="
+        filterUid ? uidData.filter((x) => x.uid == filterUid) : uidData
+      "
       class="flex-auto"
     />
   </div>

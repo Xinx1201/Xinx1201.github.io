@@ -1,6 +1,6 @@
 <template>
   <el-table
-    :data="data"
+    :data="tableData"
     border
     stripe
     style="width: 100%"
@@ -10,11 +10,25 @@
     ref="table"
   >
     <el-table-column align="center" prop="horse" label="马驹" width="180">
+      <template slot-scope="scope">
+        {{ scope.row.horse.split('·')[0] }}·{{ scope.row.horse.split('·')[1] }}
+        <el-tooltip
+          v-if="scope.row.horse.split('·').length == 3"
+          class="item"
+          effect="dark"
+          :content="horseMap(scope.row.horse.split('·')[2])"
+          placement="top"
+        >
+          <span>{{ scope.row.horse.split('·')[2] }}</span>
+        </el-tooltip>
+      </template>
     </el-table-column>
     <el-table-column type="expand">
       <template slot-scope="scope">
         <Detail :data="scope.row.children" />
       </template>
+    </el-table-column>
+    <el-table-column align="center" prop="level" label="等级" width="80">
     </el-table-column>
     <el-table-column align="center" prop="uid" label="UID" width="180">
       <template slot-scope="scope">
@@ -33,6 +47,13 @@
         ></span>
       </template>
     </el-table-column>
+    <el-table-column
+      align="center"
+      prop="successRate"
+      label="成功率"
+      width="120"
+    >
+    </el-table-column>
   </el-table>
 </template>
 
@@ -45,9 +66,12 @@ export default {
     Detail,
   },
   props: {
-    data: {
+    tableData: {
       type: Array,
       default: () => [],
+    },
+    data() {
+      return {};
     },
   },
   computed: {},
@@ -69,9 +93,19 @@ export default {
       this.$refs.table.toggleRowExpansion(row);
     },
 
+    // 马驹对应地图
+    horseMap(type) {
+      let horseMap = {
+        燕歌: '黑戈壁',
+        潮生: '鲲鹏岛',
+        踏莎: '阴山大草原',
+      };
+      return horseMap[type];
+    },
+
     objectSpanMethod({ row, column, rowIndex, columnIndex }) {
       if (columnIndex === 0) {
-        let spanArr = this.getSpanArr(this.data, 'horse');
+        let spanArr = this.getSpanArr(this.tableData, 'horse');
         const _row = spanArr[rowIndex];
         const _col = _row > 0 ? 1 : 0;
         return {
