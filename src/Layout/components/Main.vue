@@ -1,12 +1,10 @@
 <template>
   <div class="Main">
-    <section>
-      <transition name="fade-transform" mode="out-in">
-        <div class="container">
-          <router-view />
-        </div>
-      </transition>
-    </section>
+    <transition name="fade-transform" mode="out-in">
+      <div class="container">
+        <router-view />
+      </div>
+    </transition>
   </div>
 </template>
 

@@ -169,7 +169,10 @@ export default {
     },
   },
 
-  created() {},
+  created() {
+    // 赋值当前时间
+    this.currentTime = dateToString(dayjs().valueOf(), 'datetime');
+  },
 
   mounted() {
     this.checkNotifyPermission();

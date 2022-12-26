@@ -83,6 +83,11 @@ export default {
       today: undefined,
     };
   },
+  created() {
+    // 赋值当前时间
+    this.today = dayjs();
+    this.getCurrentStage();
+  },
   mounted() {
     clearInterval(this.timer);
     this.timer = setInterval(() => {
