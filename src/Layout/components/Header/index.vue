@@ -10,14 +10,20 @@
         {{ item.navItem }}
       </el-menu-item>
     </el-menu>
+
+    <!-- github角标 -->
+    <Icon />
   </div>
 </template>
 
 <script>
 import menu from '@/router/modules';
+import Icon from './icon';
 export default {
   name: 'Header',
-  components: {},
+  components: {
+    Icon,
+  },
   data() {
     return {};
   },

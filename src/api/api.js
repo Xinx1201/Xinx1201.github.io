@@ -2,9 +2,9 @@ import CONFIG from '@/utils/config' // 配置文件
 import API from '@/utils/api' // 后台接口
 import env from '@/utils/env'
 
-export const user = new API({
-  successCode: 0,
-  baseURL: env.isTest ? CONFIG.API.DEFAULT.ROOT_DEV : CONFIG.API.DEFAULT.ROOT,
+export const jx3 = new API({
+  successCode: 200,
+  baseURL: env.isTest ? CONFIG.API.JX3.ROOT_DEV : CONFIG.API.JX3.ROOT,
   // 不添加公共参数
   // appendData: (config) => {
   //   config.params._t = +new Date()
@@ -13,7 +13,7 @@ export const user = new API({
 
 
 const list = {
-  user,
+  jx3,
 }
 
 export default {

@@ -4,7 +4,7 @@
       :data="tableData"
       stripe
       style="width: 100%; height: 100%"
-      height="67vh"
+      height="73vh"
       @selection-change="handleSelectionChange"
       :cell-class-name="delLine"
     >

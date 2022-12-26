@@ -1,6 +1,6 @@
 export default {
   API: {
-    DEFAULT: {
+    JX3: {
       ROOT: '/api/',
       ROOT_DEV: '/api/',
     }

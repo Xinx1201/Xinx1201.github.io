@@ -5,7 +5,7 @@
     stripe
     style="width: 100%"
     @row-click="rowClick"
-    height="77vh"
+    height="80vh"
     :span-method="objectSpanMethod"
     ref="table"
   >

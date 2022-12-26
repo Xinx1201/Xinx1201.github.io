@@ -2,7 +2,7 @@
   <div class="App">
     <Header />
     <Main />
-    <Footer />
+    <Footer v-if="false" />
   </div>
 </template>
 
