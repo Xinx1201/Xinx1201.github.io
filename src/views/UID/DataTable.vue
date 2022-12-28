@@ -14,7 +14,6 @@
         {{ scope.row.horse.split('·')[0] }}·{{ scope.row.horse.split('·')[1] }}
         <el-tooltip
           v-if="scope.row.horse.split('·').length == 3"
-          class="item"
           effect="dark"
           :content="horseMap(scope.row.horse.split('·')[2])"
           placement="top"
@@ -28,8 +27,7 @@
         <Detail :data="scope.row.children" />
       </template>
     </el-table-column>
-    <el-table-column align="center" prop="level" label="等级" width="80">
-    </el-table-column>
+    <el-table-column align="center" prop="level" label="等级" width="80" />
     <el-table-column align="center" prop="uid" label="UID" width="180">
       <template slot-scope="scope">
         <copyable :value="scope.row.uid" />

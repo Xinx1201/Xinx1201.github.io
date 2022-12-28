@@ -35,8 +35,8 @@ export default {
   name: 'UIDSearch',
   data() {
     return {
+      uidOptions,  // uid筛选项
       form: genNew(),
-      uidOptions,
     };
   },
 
