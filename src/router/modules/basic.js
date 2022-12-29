@@ -30,6 +30,14 @@ export default {
       }
     },
     {
+      path: '/adventure',
+      name: 'Adventure',
+      component: () => import('@/views/Adventure'),
+      meta: {
+        title: '奇遇'
+      }
+    },
+    {
       path: '/Test',
       name: 'Test',
       component: () => import('@/views/Test'),

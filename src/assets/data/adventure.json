@@ -1,0 +1,258 @@
+[
+  {
+    "name": "千秋铸",
+    "cw": true,
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 0,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_82.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/qqz/school_0_open.png"
+  },
+  {
+    "name": "万灵当歌",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 0,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_81.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/万灵当歌_open.png"
+  },
+  {
+    "name": "流年如虹",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 0,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_69.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/流年如虹_open.png"
+  },
+  {
+    "name": "侠行囧途",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 0,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_65.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/侠行囧途_open.png"
+  },
+  {
+    "name": "争铸吴钩",
+    "cw": true,
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 0,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_26.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/zzwg/school_0_open.png"
+  },
+  {
+    "name": "兔江湖",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 0,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_18.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/兔江湖_open.png"
+  },
+  {
+    "name": "济苍生",
+    "cw": true,
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 0,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_59.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/jcs/school_0_open.png"
+  },
+  {
+    "name": "塞外宝驹",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 0,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_8.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/swbj_open.png"
+  },
+  {
+    "name": "阴阳两界",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 0,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_6.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/阴阳两界_open.png"
+  },
+  {
+    "name": "三尺青锋",
+    "cw": true,
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 0,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_2.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/weapon/school_0_open.png"
+  },
+  {
+    "name": "三山四海",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 0,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_1.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/三山四海_open.png"
+  },
+  {
+    "name": "红尘不渡",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_86.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/红尘不渡_open.png"
+  },
+  {
+    "name": "庆舞良宵",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_77.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/庆舞良宵_open.png"
+  },
+  {
+    "name": "度人心",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_72.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/度人心_open.png"
+  },
+  {
+    "name": "凌云梯",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_76.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/凌云梯-触发奇遇奖励.png"
+  },
+  {
+    "name": "旧宴承欢",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_71.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/旧宴承欢-触发奇遇奖励.png"
+  },
+  {
+    "name": "寻猫记",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_70.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/寻猫记_open.png"
+  },
+  {
+    "name": "劝学记",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_25.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/劝学记_open.png"
+  },
+  {
+    "name": "白日梦",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_17.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/白日梦_open.png"
+  },
+  {
+    "name": "舞众生",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_16.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/舞众生_open.png"
+  },
+  {
+    "name": "惜往日",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_60.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/xwr_open.png"
+  },
+  {
+    "name": "韶华故",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_47.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/韶华故_open.png"
+  },
+  {
+    "name": "故园风雨",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_43.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/故园风雨_open.png"
+  },
+  {
+    "name": "平生心愿",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_38.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/psxy_open.png"
+  },
+  {
+    "name": "雪山恩仇",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_39.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/xsec_open.png"
+  },
+  {
+    "name": "乱世舞姬",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_37.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/lswj_open.png"
+  },
+  {
+    "name": "虎啸山林",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_35.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/hxsl_open.png"
+  },
+  {
+    "name": "护佑苍生",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_36.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/hycs_open.png"
+  },
+  {
+    "name": "天涯无归",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_9.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/tywg_open.png"
+  },
+  {
+    "name": "扶摇九天",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_31.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/fuyaojiutian_open.png"
+  },
+  {
+    "name": "清风捕王",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_33.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/qingfengbuwang_open.png"
+  },
+  {
+    "name": "炼狱厨神",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_32.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/lianyuchushen_open.png"
+  },
+  {
+    "name": "生死判",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_13.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/生死判_open.png"
+  },
+  {
+    "name": "茶馆奇缘",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_23.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/茶馆奇缘_open.png"
+  },
+  {
+    "name": "少年行",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_12.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/少年行_open.png"
+  },
+  {
+    "name": "黑白路",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_24.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/camp/camp_2_open.png"
+  }
+]

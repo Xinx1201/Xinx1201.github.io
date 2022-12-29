@@ -1,0 +1,97 @@
+[
+  {
+    "id": "0",
+    "school": "江湖",
+    "color": "#c3c5c1"
+  },
+  {
+    "id": "1",
+    "school": "少林",
+    "color": "#E6BC31"
+  },
+  {
+    "id": "2",
+    "school": "万花",
+    "color": "#BA9BE4"
+  },
+  {
+    "id": "3",
+    "school": "天策",
+    "color": "#EC4B2C"
+  },
+  {
+    "id": "4",
+    "school": "纯阳",
+    "color": "#37C0E2"
+  },
+  {
+    "id": "5",
+    "school": "七秀",
+    "color": "#FF7DAD"
+  },
+  {
+    "id": "6",
+    "school": "五毒",
+    "color": "#4B9BFB"
+  },
+  {
+    "id": "7",
+    "school": "唐门",
+    "color": "#90CC50"
+  },
+  {
+    "id": "8",
+    "school": "藏剑",
+    "color": "#FDDD70"
+  },
+  {
+    "id": "9",
+    "school": "丐帮",
+    "color": "#D6A16F"
+  },
+  {
+    "id": "10",
+    "school": "明教",
+    "color": "#f16040"
+  },
+  {
+    "id": "21",
+    "school": "苍云",
+    "color": "#6568ad"
+  },
+  {
+    "id": "22",
+    "school": "长歌",
+    "color": "#6DDFE2"
+  },
+  {
+    "id": "23",
+    "school": "霸刀",
+    "color": "#8D90D8"
+  },
+  {
+    "id": "24",
+    "school": "蓬莱",
+    "color": "#94C7DC"
+  },
+  {
+    "id": "25",
+    "school": "凌雪",
+    "color": "#872F37"
+  },
+  {
+    "id": "211",
+    "school": "衍天",
+    "color": "#b9c1ff"
+  },
+  {
+    "id": "212",
+    "school": "药宗",
+    "color": "#16708a"
+  },
+  {
+    "id": "213",
+    "school": "刀宗",
+    "color": "#6bb7f2"
+  }
+]
