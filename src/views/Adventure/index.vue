@@ -39,7 +39,7 @@ export default {
   data() {
     return {
       schools,
-      school: '江湖',
+      school: '霸刀',
     };
   },
   watch: {

@@ -18,7 +18,7 @@
         :style="{
           backgroundColor: school
             ? schools.find((x) => x.school == school).color
-            : '#c3c5c1',
+            : '#8D90D8',
         }"
         class="finish"
       >
@@ -55,31 +55,19 @@ export default {
       switch (type) {
         case 'all':
           // 勾选全部
-          if (
-            this.adventure
-              .filter((x) => x.type !== 99)
-              .every((x) => x.isFinish == true)
-          ) {
+          if (this.adventure.every((x) => x.isFinish == true)) {
             this.adventure.forEach((x) => {
-              if (x.type !== 99) {
-                x.isFinish = false;
-              }
+              x.isFinish = false;
             });
           } else {
             this.adventure.forEach((x) => {
-              if (x.type !== 99) {
-                x.isFinish = true;
-              }
+              x.isFinish = true;
             });
           }
           break;
         case 'normal':
           // 如果全部选中 置为未选中状态
-          if (
-            this.adventure
-              .filter((x) => x.type !== 99)
-              .every((x) => x.isFinish == true)
-          ) {
+          if (this.adventure.every((x) => x.isFinish == true)) {
             this.adventure.forEach((x) => {
               x.isFinish = false;
             });
@@ -95,11 +83,7 @@ export default {
           break;
         case 'perfect':
           // 如果全部选中 置为未选中状态
-          if (
-            this.adventure
-              .filter((x) => x.type !== 99)
-              .every((x) => x.isFinish == true)
-          ) {
+          if (this.adventure.every((x) => x.isFinish == true)) {
             this.adventure.forEach((x) => {
               x.isFinish = false;
             });
@@ -118,7 +102,6 @@ export default {
       }
     },
     onClickIsFinish(item) {
-      if (item.type == 99) return;
       this.adventure.find((x) => x.name == item.name).isFinish = !item.isFinish;
     },
     changeColor(val) {
