@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "pages": "node ./deploy.js"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -13,6 +14,7 @@
     "element-ui": "^2.15.12",
     "lodash": "^4.17.21",
     "query-string": "^8.0.3",
+    "shelljs": "^0.8.5",
     "ua-parser-js": "^1.0.32",
     "v-clipboard": "^2.2.3",
     "vue": "^2.6.14",
