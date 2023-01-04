@@ -88,7 +88,7 @@ export default {
     // 默认霸刀的颜色
     this.$refs.school.$el.children[0].children[0].style.color = '#8D90D8';
     // 默认恶人谷的颜色
-    this.$refs.camp.$el.children[0].children[0].style.color = 'red';
+    this.$refs.camp.$el.children[0].children[0].style.color = '#A01E1E';
   },
   methods: {
     onClickCheck(type) {
