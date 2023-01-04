@@ -38,6 +38,14 @@ export default {
       }
     },
     {
+      path: '/todoList',
+      name: 'TodoList',
+      component: () => import('@/views/TodoList'),
+      meta: {
+        title: '待办清单'
+      }
+    },
+    {
       path: '/Test',
       name: 'Test',
       component: () => import('@/views/Test'),
