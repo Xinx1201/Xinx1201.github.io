@@ -195,14 +195,16 @@ export default {
     },
 
     onClickEdit(item) {
-      if (item.isCheck) return;
       this.isEdit = true;
       this.source = this.items.find((x) => x.id == item.id);
       this.text = this.source.text;
     },
 
     onClickDel(item) {
-      if (item.isCheck) return;
+      if (item.text == this.text) {
+        this.isEdit = false;
+        this.text = '';
+      }
       let index = this.items.findIndex((x) => x.id == item.id);
       console.log(index);
       this.items.splice(index, 1);
@@ -255,6 +257,11 @@ export default {
 
     .el-icon-edit {
       margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .el-icon-delete {
+      cursor: pointer;
     }
 
     .text {
