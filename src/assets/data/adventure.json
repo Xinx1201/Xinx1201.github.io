@@ -1,5 +1,12 @@
 [
   {
+    "name": "追魂骨",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 0,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_87.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/追魂骨_open.png"
+  },
+  {
     "name": "千秋铸",
     "cw": true,
     "bg": "https://img.jx3box.com/image/pvx/bg.png",
@@ -79,6 +86,13 @@
     "type": 0,
     "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_1.png",
     "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/三山四海_open.png"
+  },
+  {
+    "name": "镜中琴音",
+    "bg": "https://img.jx3box.com/image/pvx/bg.png",
+    "type": 1,
+    "text": "https://img.jx3box.com/adventure/image_ui/std/luckymeeting7_88.png",
+    "img": "https://img.jx3box.com/adventure/adventure/std/reward/open/镜中琴音_open.png"
   },
   {
     "name": "红尘不渡",
