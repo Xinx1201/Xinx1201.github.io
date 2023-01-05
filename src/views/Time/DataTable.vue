@@ -30,6 +30,9 @@
       </el-table-column>
       <el-table-column label="操作" align="center">
         <template slot-scope="scope">
+          <el-button size="mini" class="mgr10" @click="copy(scope.row)"
+            >复制</el-button
+          >
           <el-popconfirm
             confirm-button-text="好的"
             cancel-button-text="不用了"
@@ -50,6 +53,7 @@
 
 <script>
 import { filterKeyWord } from '@/utils';
+import emoticons from '@/assets/data/emoticons.json';
 export default {
   name: 'HorseDataTable',
   props: {
@@ -60,6 +64,7 @@ export default {
   },
   data() {
     return {
+      emoticons,
       multipleSelection: [],
     };
   },
@@ -74,6 +79,29 @@ export default {
     handleSelectionChange(val) {
       this.multipleSelection = val;
       this.$emit('selection', this.multipleSelection);
+    },
+    randomInt(min, max) {
+      return Math.round(Math.random() * (max - min) + min);
+    },
+    // 复制
+    copy(row) {
+      let randomEmoji =
+        this.emoticons[this.randomInt(0, this.emoticons.length)];
+      let oInput = document.createElement('input');
+      // 将想要复制的值
+      oInput.value = `【${row.server}】将于${row.endTime.split(' ')[1]}在 ${
+        row.map
+      } 刷新马驹 ${row.type.split('/').join('\\')} ${randomEmoji}`;
+      // 页面底部追加输入框
+      document.body.appendChild(oInput);
+      // 选中输入框
+      oInput.select();
+      // 执行浏览器复制命令
+      document.execCommand('Copy');
+      // 弹出复制成功信息
+      this.$message.success('复制成功');
+      // 复制后移除输入框
+      oInput.remove();
     },
     // 删除
     onDeletRecord(row) {
