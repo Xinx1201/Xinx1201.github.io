@@ -107,7 +107,7 @@ export default {
       schools,
       pvps,
       type: true, // true为角标
-      name: '用户名', // 角色名
+      name: '', // 角色名
       server: '破阵子', // 服务器
       camp: '恶人谷',
       school: {
