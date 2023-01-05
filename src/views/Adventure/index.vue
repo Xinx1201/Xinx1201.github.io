@@ -40,7 +40,7 @@
         <el-input
           class="name mgl10"
           v-model="name"
-          placeholder="请输入角色名"
+          placeholder="请输入游戏id"
         ></el-input>
         <el-select
           class="mgl10"
