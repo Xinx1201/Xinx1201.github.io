@@ -29,30 +29,32 @@
         </div>
 
         <!-- 勾选√选中状态 -->
-        <div
+        <img
           v-if="item.isFinish && !type"
+          src="https://s2.loli.net/2023/01/05/ueZFN1nH2WVOjRp.png"
           class="check"
-          :style="{
-            color: 'rgba(165,11,11,0.8)',
-          }"
-        >
-          √
-        </div>
+        />
       </template>
 
       <template v-else>
         <div class="container">
-          <div class="normal">
-            <span class="adventure">普通奇遇</span>
-            {{
-              adventure.filter((x) => x.type == 1 && x.isFinish == true).length
-            }}/{{ adventure.filter((x) => x.type == 1).length }}
+          <div class="normal flex-row flex-center">
+            <img src="https://s2.loli.net/2023/01/05/oQCIagRz8FTOkcl.png" />
+            <div>
+              {{
+                adventure.filter((x) => x.type == 1 && x.isFinish == true)
+                  .length
+              }}/{{ adventure.filter((x) => x.type == 1).length }}
+            </div>
           </div>
-          <div class="perfect">
-            <span class="adventure">绝世奇遇</span>
-            {{
-              adventure.filter((x) => x.type == 0 && x.isFinish == true).length
-            }}/{{ adventure.filter((x) => x.type == 0).length }}
+          <div class="perfect flex-row flex-center">
+            <img src="https://s2.loli.net/2023/01/05/EAYSoJusTWM9Lwv.png" />
+            <div>
+              {{
+                adventure.filter((x) => x.type == 0 && x.isFinish == true)
+                  .length
+              }}/{{ adventure.filter((x) => x.type == 0).length }}
+            </div>
           </div>
           <div class="time">
             {{ new Date().toLocaleDateString() }}
@@ -210,31 +212,25 @@ export default {
     height: 140px;
     line-height: 30px;
     text-align: center;
-    .logo {
-      height: 50%;
-    }
 
+    img {
+      height: calc(25px * 0.75);
+      width: calc(114px * 0.75);
+    }
     .normal,
     .perfect,
     .time {
       line-height: 45px;
-      font-family: 'jx3';
-
-      .adventure {
-        font-size: 21px;
-      }
+      font-family: 'jx3', '华文行楷', '华文隶书', 'Microsoft Yahei', '微软雅黑',
+        'SimSun', 'SimHei';
     }
 
     .normal {
-      color: #b51cad;
-    }
-
-    .perfect {
-      color: #f7b500;
+      margin-top: 5px;
     }
 
     .time {
-      font-size: 30px;
+      font-size: 25px;
     }
   }
 
@@ -260,10 +256,8 @@ export default {
 
     .check {
       position: absolute;
-      top: -11%;
-      left: 25%;
-      font-size: 150px;
-      font-family: 'jx3';
+      top: 0%;
+      left: 20%;
       z-index: 88;
     }
 
