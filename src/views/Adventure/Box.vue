@@ -36,7 +36,17 @@
         />
       </template>
 
-      <template v-else>
+      <template v-else-if="item.name == 'first'">
+        <div class="first">
+          <div class="logo mgt10">
+            <img :src="schools.find((x) => x.school == school).icon" alt="" />
+          </div>
+          <div class="name">{{ name }}</div>
+          <div class="server">{{ server }}</div>
+        </div>
+      </template>
+
+      <template v-else-if="item.name == 'end'">
         <div class="container">
           <div class="normal flex-row flex-center">
             <img src="https://s2.loli.net/2023/01/05/oQCIagRz8FTOkcl.png" />
@@ -75,6 +85,8 @@ export default {
     return {
       adventure,
       schools,
+      name: '', // 角色名
+      server: '', // 服务器
       type: true, // 角标形式
       school: '霸刀', // 当前选中的门派
     };
@@ -161,6 +173,16 @@ export default {
         .find((x) => x.name == item.name).isFinish = !item.isFinish;
     },
 
+    // 获得角色名称
+    getName(val) {
+      this.name = val;
+    },
+
+    // 获得服务器
+    getServer(val) {
+      this.server = val;
+    },
+
     // 完成表现形式修改
     changeShowType(val) {
       // true 角标 false 对勾
@@ -205,6 +227,29 @@ export default {
     .el-card__body,
     .el-main {
       padding: 0px;
+    }
+  }
+
+  .first {
+    height: 140px;
+    line-height: 30px;
+    text-align: center;
+    .logo {
+      height: 40%;
+      img {
+        width: 57px;
+        height: 57px;
+      }
+    }
+    .name,
+    .server {
+      font-size: 20px;
+      height: 25%;
+      font-family: 'jx3', '华文行楷', '华文隶书', 'Microsoft Yahei', '微软雅黑',
+        'SimSun', 'SimHei';
+    }
+    .server {
+      font-size: 30px;
     }
   }
 
@@ -256,8 +301,9 @@ export default {
 
     .check {
       position: absolute;
-      top: 0%;
-      left: 20%;
+      top: 0;
+      height: 120px;
+      left: 30%;
       z-index: 88;
     }
 

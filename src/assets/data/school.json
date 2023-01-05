@@ -2,91 +2,109 @@
   {
     "id": "1",
     "school": "少林",
-    "color": "#E6BC31"
+    "color": "#E6BC31",
+    "icon": "https://img.jx3box.com/image/school/5.png"
   },
   {
     "id": "2",
     "school": "万花",
-    "color": "#BA9BE4"
+    "color": "#BA9BE4",
+    "icon": "https://img.jx3box.com/image/school/2.png"
   },
   {
     "id": "3",
     "school": "天策",
-    "color": "#EC4B2C"
+    "color": "#EC4B2C",
+    "icon": "https://img.jx3box.com/image/school/1.png"
   },
   {
     "id": "4",
     "school": "纯阳",
-    "color": "#37C0E2"
+    "color": "#37C0E2",
+    "icon": "https://img.jx3box.com/image/school/3.png"
   },
   {
     "id": "5",
     "school": "七秀",
-    "color": "#FF7DAD"
+    "color": "#FF7DAD",
+    "icon": "https://img.jx3box.com/image/school/4.png"
   },
   {
     "id": "6",
     "school": "五毒",
-    "color": "#4B9BFB"
+    "color": "#4B9BFB",
+    "icon": "https://img.jx3box.com/image/school/9.png"
   },
   {
     "id": "7",
     "school": "唐门",
-    "color": "#90CC50"
+    "color": "#90CC50",
+    "icon": "https://img.jx3box.com/image/school/10.png"
   },
   {
     "id": "8",
     "school": "藏剑",
-    "color": "#FDDD70"
+    "color": "#FDDD70",
+    "icon": "https://img.jx3box.com/image/school/6.png"
   },
   {
     "id": "9",
     "school": "丐帮",
-    "color": "#D6A16F"
+    "color": "#D6A16F",
+    "icon": "https://img.jx3box.com/image/school/7.png"
   },
   {
     "id": "10",
     "school": "明教",
-    "color": "#f16040"
+    "color": "#f16040",
+    "icon": "https://img.jx3box.com/image/school/8.png"
   },
   {
     "id": "21",
     "school": "苍云",
-    "color": "#6568ad"
+    "color": "#6568ad",
+    "icon": "https://img.jx3box.com/image/school/18.png"
   },
   {
     "id": "22",
     "school": "长歌",
-    "color": "#6DDFE2"
+    "color": "#6DDFE2",
+    "icon": "https://img.jx3box.com/image/school/19.png"
   },
   {
     "id": "23",
     "school": "霸刀",
-    "color": "#8D90D8"
+    "color": "#8D90D8",
+    "icon": "https://img.jx3box.com/image/school/20.png"
   },
   {
     "id": "24",
     "school": "蓬莱",
-    "color": "#94C7DC"
+    "color": "#94C7DC",
+    "icon": "https://img.jx3box.com/image/school/21.png"
   },
   {
     "id": "25",
     "school": "凌雪",
-    "color": "#872F37"
+    "color": "#872F37",
+    "icon": "https://img.jx3box.com/image/school/22.png"
   },
   {
     "id": "211",
     "school": "衍天",
-    "color": "#b9c1ff"
+    "color": "#b9c1ff",
+    "icon": "https://img.jx3box.com/image/school/23.png"
   },
   {
     "id": "212",
     "school": "药宗",
-    "color": "#16708a"
+    "color": "#16708a",
+    "icon": "https://img.jx3box.com/image/school/24.png"
   },
   {
     "id": "213",
     "school": "刀宗",
-    "color": "#6bb7f2"
+    "color": "#6bb7f2",
+    "icon": "https://img.jx3box.com/image/school/26.png"
   }
 ]

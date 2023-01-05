@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-column flex-center">
+  <div class="adventure flex-column flex-center">
     <div class="operation is-flex flex-as-stretch flex-between">
       <div>
         <el-select
@@ -36,10 +36,32 @@
             <span :style="{ color: item.color }">{{ item.camp }}</span>
           </el-option>
         </el-select>
+
+        <el-input
+          class="name mgl10"
+          v-model="name"
+          placeholder="请输入角色名"
+        ></el-input>
+        <el-select
+          class="mgl10"
+          filterable
+          v-model="server"
+          placeholder="请选择服务器"
+        >
+          <el-option
+            v-for="item in servers"
+            :key="item"
+            :label="item"
+            :value="item"
+          >
+          </el-option>
+        </el-select>
       </div>
       <el-switch
+        v-if="isRefresh"
+        class="mgt10"
         v-model="type"
-        :active-color="schools.find((x) => x.school == school).color"
+        :active-color="school.color"
         inactive-color="rgba(165,11,11,0.8)"
         active-text="角标"
         inactive-text="对勾"
@@ -58,6 +80,7 @@
 <script>
 import Box from './Box.vue';
 import schools from '@/assets/data/school.json';
+import servers from '@/assets/data/server.json';
 import pvps from '@/assets/data/pvp.json';
 export default {
   name: 'Adventure',
@@ -66,20 +89,33 @@ export default {
   },
   data() {
     return {
+      servers,
       schools,
       pvps,
       type: true, // true为角标
+      name: '', // 角色名
+      server: '', // 服务器
       camp: '恶人谷',
-      school: '霸刀',
+      school: {
+        id: '23',
+        school: '霸刀',
+        color: '#8D90D8',
+        icon: 'https://img.jx3box.com/image/school/20.png',
+      },
+      isRefresh: true,
     };
   },
   watch: {
     school: {
       handler(val) {
         if (val) {
+          this.isRefresh = false;
           // 改变选中后的颜色
           this.$refs.school.$el.children[0].children[0].style.color = val.color;
           this.$refs.box.changeColor(val);
+          this.$nextTick(() => {
+            this.isRefresh = true;
+          });
         }
       },
     },
@@ -99,6 +135,16 @@ export default {
         this.$refs.box.changeShowType(val);
       },
     },
+    name: {
+      handler(val) {
+        this.$refs.box.getName(val);
+      },
+    },
+    server: {
+      handler(val) {
+        this.$refs.box.getServer(val);
+      },
+    },
   },
   mounted() {
     // 默认霸刀的颜色
@@ -115,10 +161,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.adventure {
+  min-width: 1600px;
+}
 .operation {
   margin-bottom: 10px;
   .camp {
     margin-left: 10px;
+  }
+
+  .name {
+    width: 217px;
+  }
+
+  .el-switch {
+    align-items: center;
+    justify-content: center;
   }
 }
 </style>

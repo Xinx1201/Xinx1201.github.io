@@ -1,5 +1,9 @@
 [
   {
+    "name": "first",
+    "type": 99
+  },
+  {
     "name": "追魂骨",
     "bg": "https://img.jx3box.com/image/pvx/bg.png",
     "type": 0,
