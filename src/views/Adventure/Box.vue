@@ -30,13 +30,13 @@
       <template v-else>
         <div class="container">
           <div class="normal">
-            普通奇遇
+            <span class="adventure">普通奇遇</span>
             {{
               adventure.filter((x) => x.type == 1 && x.isFinish == true).length
             }}/{{ adventure.filter((x) => x.type == 1).length }}
           </div>
           <div class="perfect">
-            绝世奇遇
+            <span class="adventure">绝世奇遇</span>
             {{
               adventure.filter((x) => x.type == 0 && x.isFinish == true).length
             }}/{{ adventure.filter((x) => x.type == 0).length }}
@@ -195,6 +195,11 @@ export default {
     .perfect,
     .time {
       line-height: 45px;
+      font-family: 'jx3';
+
+      .adventure {
+        font-size: 21px;
+      }
     }
 
     .normal {
@@ -203,6 +208,10 @@ export default {
 
     .perfect {
       color: #f7b500;
+    }
+
+    .time {
+      font-size: 30px;
     }
   }
 
