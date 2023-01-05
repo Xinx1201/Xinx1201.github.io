@@ -1,6 +1,6 @@
 <template>
   <el-table
-    :data="tableData"
+    :data="tableData.filter((x) => x.children.length)"
     border
     stripe
     style="width: 100%"

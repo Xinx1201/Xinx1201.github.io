@@ -3,7 +3,11 @@
     <Operation class="flex-none" @select="select" />
     <DataTable
       :tableData="
-        filterUid ? uidData.filter((x) => x.uid == filterUid) : uidData
+        isOnlySeeVariation
+          ? uidData.filter((x) => x.variation == true)
+          : filterUid
+          ? uidData.filter((x) => x.uid == filterUid)
+          : uidData
       "
       class="flex-auto"
     />
@@ -24,11 +28,13 @@ export default {
     return {
       uidData,
       filterUid: '', // 筛选的uid
+      isOnlySeeVariation: false, // 是否仅看变异马驹
     };
   },
   methods: {
     select(form) {
       this.filterUid = form.uid;
+      this.isOnlySeeVariation = form.onlySeeVariation;
     },
   },
 };

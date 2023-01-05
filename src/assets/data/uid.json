@@ -444,6 +444,7 @@
     "uid": "162995",
     "level": "8",
     "successRate": "70%",
+    "variation": true,
     "children": [
       {
         "horse": "龙子·燕歌",
@@ -620,6 +621,7 @@
     "uid": "162989",
     "level": "9",
     "successRate": "60%",
+    "variation": true,
     "children": [
       {
         "horse": "麟驹·潮生",
@@ -928,6 +930,7 @@
     "uid": "151520",
     "level": "10",
     "successRate": "50%",
+    "variation": true,
     "children": [
       {
         "horse": "绝尘·青竹",
@@ -1155,6 +1158,7 @@
     "uid": "151506",
     "level": "11",
     "successRate": "40%",
+    "variation": true,
     "children": [
       {
         "horse": "赤蛇·金菊",
@@ -1514,6 +1518,7 @@
     "uid": "162999",
     "level": "12",
     "successRate": "40%",
+    "variation": true,
     "children": [
       {
         "horse": "闪电·燕歌",
