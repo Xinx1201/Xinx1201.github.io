@@ -85,8 +85,8 @@ export default {
     return {
       adventure,
       schools,
-      name: '', // 角色名
-      server: '', // 服务器
+      name: '用户名', // 角色名
+      server: '破阵子', // 服务器
       type: true, // 角标形式
       school: '霸刀', // 当前选中的门派
     };

@@ -73,12 +73,26 @@
         <el-button @click="onClickCheck('perfect')">一键勾选绝世奇遇</el-button>
       </div>
     </div>
-    <Box ref="box" />
+    <Box ref="box" id="box" />
+    <div class="show">
+      <el-image
+        v-show="false"
+        style="width: 300px; height: 150px"
+        :src="url"
+        ref="preview"
+        :preview-src-list="srcList"
+      >
+      </el-image>
+    </div>
+    <div class="export">
+      <el-button @click="onClickExport" type="primary">导出图片</el-button>
+    </div>
   </div>
 </template>
 
 <script>
 import Box from './Box.vue';
+import html2canvas from 'html2canvas';
 import schools from '@/assets/data/school.json';
 import servers from '@/assets/data/server.json';
 import pvps from '@/assets/data/pvp.json';
@@ -93,8 +107,8 @@ export default {
       schools,
       pvps,
       type: true, // true为角标
-      name: '', // 角色名
-      server: '', // 服务器
+      name: '用户名', // 角色名
+      server: '破阵子', // 服务器
       camp: '恶人谷',
       school: {
         id: '23',
@@ -103,6 +117,10 @@ export default {
         icon: 'https://img.jx3box.com/image/school/20.png',
       },
       isRefresh: true,
+
+      // el-image
+      url: '',
+      srcList: [],
     };
   },
   watch: {
@@ -156,6 +174,29 @@ export default {
     onClickCheck(type) {
       this.$refs.box.check(type);
     },
+
+    // 导出图片
+    onClickExport() {
+      this.srcList = [];
+      html2canvas(document.querySelector('#box'), {
+        useCORS: true,
+        backgroundColor: '#FFF',
+      }).then((canvas) => {
+        const link = document.createElement('a'); // 创建一个超链接对象实例
+        const event = new MouseEvent('click'); // 创建一个鼠标事件的实例
+        link.download = `${this.name}奇遇.png`; // 设置要下载的图片的名称
+        link.href = canvas.toDataURL(); // 将图片的URL设置到超链接的href中
+
+        // html2canvas与el-image配合使用
+        this.url = link.href;
+        this.srcList.push(link.href);
+        setTimeout(() => {
+          this.$refs.preview.showViewer = true;
+        }, 100);
+
+        link.dispatchEvent(event); // 触发超链接的点击事件
+      });
+    },
   },
 };
 </script>
@@ -163,6 +204,19 @@ export default {
 <style lang="scss" scoped>
 .adventure {
   min-width: 1600px;
+  position: relative;
+
+  .show {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+
+  .export {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
 }
 .operation {
   margin-bottom: 10px;
