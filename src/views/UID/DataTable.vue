@@ -88,6 +88,8 @@ export default {
     },
     // 点击行 展示详情信息
     rowClick(row, column, event) {
+      // 复制uid不允许展开行
+      if (column.property == 'uid') return;
       this.$refs.table.toggleRowExpansion(row);
     },
 
