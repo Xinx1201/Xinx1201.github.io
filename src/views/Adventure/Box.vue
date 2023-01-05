@@ -14,8 +14,10 @@
         <img :src="item.img" class="cover" />
         <!-- 文字 -->
         <img :src="item.text" class="text" />
+
+        <!-- 右上角上角已完成tag -->
         <div
-          v-if="item.isFinish"
+          v-if="item.isFinish && type"
           :style="{
             backgroundColor: school
               ? schools.find((x) => x.school == school).color
@@ -24,6 +26,17 @@
           class="finish"
         >
           已完成
+        </div>
+
+        <!-- 勾选√选中状态 -->
+        <div
+          v-if="item.isFinish && !type"
+          class="check"
+          :style="{
+            color: 'rgba(165,11,11,0.8)',
+          }"
+        >
+          √
         </div>
       </template>
 
@@ -60,6 +73,7 @@ export default {
     return {
       adventure,
       schools,
+      type: true, // 角标形式
       school: '霸刀', // 当前选中的门派
     };
   },
@@ -71,14 +85,17 @@ export default {
         isFinish: false,
       };
     });
-    console.log(this.adventure);
   },
   methods: {
     check(type) {
       switch (type) {
         case 'all':
           // 勾选全部
-          if (this.adventure.every((x) => x.isFinish == true)) {
+          if (
+            this.adventure
+              .filter((x) => x.type !== 99)
+              .every((x) => x.isFinish == true)
+          ) {
             this.adventure
               .filter((x) => x.type !== 99)
               .forEach((x) => {
@@ -140,6 +157,12 @@ export default {
       this.adventure
         .filter((x) => x.type !== 99)
         .find((x) => x.name == item.name).isFinish = !item.isFinish;
+    },
+
+    // 完成表现形式修改
+    changeShowType(val) {
+      // true 角标 false 对勾
+      this.type = val;
     },
 
     // 阵营图片
@@ -232,6 +255,16 @@ export default {
       font-size: 12px;
       transform: rotate(45deg);
       color: #fff;
+      z-index: 99;
+    }
+
+    .check {
+      position: absolute;
+      top: -11%;
+      left: 25%;
+      font-size: 150px;
+      font-family: 'jx3';
+      z-index: 88;
     }
 
     &.card {

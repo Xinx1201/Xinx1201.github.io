@@ -37,6 +37,14 @@
           </el-option>
         </el-select>
       </div>
+      <el-switch
+        v-model="type"
+        :active-color="schools.find((x) => x.school == school).color"
+        inactive-color="rgba(165,11,11,0.8)"
+        active-text="角标"
+        inactive-text="对勾"
+      >
+      </el-switch>
       <div>
         <el-button @click="onClickCheck('all')">一键完成</el-button>
         <el-button @click="onClickCheck('normal')">一键勾选普通奇遇</el-button>
@@ -60,6 +68,7 @@ export default {
     return {
       schools,
       pvps,
+      type: true, // true为角标
       camp: '恶人谷',
       school: '霸刀',
     };
@@ -81,6 +90,13 @@ export default {
           this.$refs.camp.$el.children[0].children[0].style.color = val.color;
           this.$refs.box.changeCampColor(val);
         }
+      },
+    },
+    type: {
+      handler(val) {
+        // true 角标 false 对勾
+        // 改变完成表现形式
+        this.$refs.box.changeShowType(val);
       },
     },
   },
