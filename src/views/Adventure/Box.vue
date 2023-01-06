@@ -29,11 +29,7 @@
         </div>
 
         <!-- 勾选√选中状态 -->
-        <img
-          v-if="item.isFinish && !type"
-          src="https://s2.loli.net/2023/01/05/ueZFN1nH2WVOjRp.png"
-          class="check"
-        />
+        <div v-if="item.isFinish && !type" class="check">√</div>
       </template>
 
       <template v-else-if="item.name == 'first'">
@@ -49,7 +45,7 @@
       <template v-else-if="item.name == 'end'">
         <div class="container">
           <div class="normal flex-row flex-center">
-            <img src="https://s2.loli.net/2023/01/05/oQCIagRz8FTOkcl.png" />
+            <span class="adventure">普通奇遇</span>
             <div>
               {{
                 adventure.filter((x) => x.type == 1 && x.isFinish == true)
@@ -58,7 +54,7 @@
             </div>
           </div>
           <div class="perfect flex-row flex-center">
-            <img src="https://s2.loli.net/2023/01/05/EAYSoJusTWM9Lwv.png" />
+            <span class="adventure">绝世奇遇</span>
             <div>
               {{
                 adventure.filter((x) => x.type == 0 && x.isFinish == true)
@@ -253,8 +249,8 @@ export default {
     .server {
       font-size: 20px;
       height: 25%;
-      font-family: 'jx3', '华文行楷', '华文隶书', 'Microsoft Yahei', '微软雅黑',
-        'SimSun', 'SimHei';
+      font-family: 'jx3min', 'jx3', '华文行楷', '华文隶书', 'Microsoft Yahei',
+        '微软雅黑', 'SimSun', 'SimHei';
     }
     .server {
       font-size: 30px;
@@ -274,14 +270,22 @@ export default {
     .perfect,
     .time {
       line-height: 45px;
-      font-family: 'jx3', '华文行楷', '华文隶书', 'Microsoft Yahei', '微软雅黑',
-        'SimSun', 'SimHei';
+      font-family: 'jx3min', 'jx3', '华文行楷', '华文隶书', 'Microsoft Yahei',
+        '微软雅黑', 'SimSun', 'SimHei';
+
+      .adventure {
+        font-size: 23px;
+      }
     }
 
     .normal {
+      color: #b51cad;
       margin-top: 5px;
     }
 
+    .perfect {
+      color: #f7b500;
+    }
     .time {
       font-size: 25px;
     }
@@ -309,9 +313,11 @@ export default {
 
     .check {
       position: absolute;
-      top: 0;
-      height: 120px;
-      left: 30%;
+      color: #ae2323;
+      top: -11%;
+      left: 25%;
+      font-size: 150px;
+      font-family: 'jx3min', 'jx3';
       z-index: 88;
     }
 
