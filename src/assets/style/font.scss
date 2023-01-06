@@ -11,7 +11,14 @@
   font-display: swap;
 }
 
+// @font-face {
+//   font-family: 'jx3min';
+//   src: url('@/assets/font/jx3min.ttf');
+// }
+
 @font-face {
   font-family: 'jx3min';
-  src: url('@/assets/font/jx3min.ttf');
+  src: url('https://jsd.cdn.zzko.cn/gh/Xinx1201/Xinx1201.github.io@main/src/assets/font/jx3min.ttf')
+    format('truetype');
+  font-display: swap;
 }

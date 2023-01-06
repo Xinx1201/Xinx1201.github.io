@@ -269,7 +269,7 @@ export default {
     .perfect,
     .time {
       line-height: 45px;
-      font-family: 'jx3min';
+      font-family: 'jx3min', 'jx3';
 
       .adventure {
         font-size: 23px;
@@ -315,7 +315,7 @@ export default {
       top: -11%;
       left: 25%;
       font-size: 150px;
-      font-family: 'jx3min';
+      font-family: 'jx3min', 'jx3';
       z-index: 88;
     }
 
