@@ -249,8 +249,7 @@ export default {
     .server {
       font-size: 20px;
       height: 25%;
-      font-family: 'jx3min', 'jx3', '华文行楷', '华文隶书', 'Microsoft Yahei',
-        '微软雅黑', 'SimSun', 'SimHei';
+      font-family: 'jx3min', 'jx3', '楷体', '微软雅黑';
     }
     .server {
       font-size: 30px;
@@ -270,8 +269,7 @@ export default {
     .perfect,
     .time {
       line-height: 45px;
-      font-family: 'jx3min', 'jx3', '华文行楷', '华文隶书', 'Microsoft Yahei',
-        '微软雅黑', 'SimSun', 'SimHei';
+      font-family: 'jx3min';
 
       .adventure {
         font-size: 23px;
@@ -317,7 +315,7 @@ export default {
       top: -11%;
       left: 25%;
       font-size: 150px;
-      font-family: 'jx3min', 'jx3';
+      font-family: 'jx3min';
       z-index: 88;
     }
 
