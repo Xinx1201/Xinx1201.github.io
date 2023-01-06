@@ -46,15 +46,21 @@
           class="mgl10"
           filterable
           v-model="server"
-          placeholder="请选择服务器"
+          placeholder="请选择"
         >
-          <el-option
-            v-for="item in servers"
-            :key="item"
-            :label="item"
-            :value="item"
+          <el-option-group
+            v-for="group in servers"
+            :key="group.label"
+            :label="group.label"
           >
-          </el-option>
+            <el-option
+              v-for="item in group.options"
+              :key="item.label"
+              :label="item.label"
+              :value="item.label"
+            >
+            </el-option>
+          </el-option-group>
         </el-select>
       </div>
       <el-switch

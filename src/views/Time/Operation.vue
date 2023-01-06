@@ -1,20 +1,26 @@
 <template>
   <div class="operation">
     <el-select
-      allow-create
+      class="mgl10"
       filterable
       default-first-option
       @change="onSelectChange"
       v-model="form.server"
-      placeholder="服务器"
+      placeholder="请选择服务器"
     >
-      <el-option
-        v-for="item in serverList"
-        :key="item"
-        :label="item"
-        :value="item"
+      <el-option-group
+        v-for="group in serverList"
+        :key="group.label"
+        :label="group.label"
       >
-      </el-option>
+        <el-option
+          v-for="item in group.options"
+          :key="item.label"
+          :label="item.label"
+          :value="item.label"
+        >
+        </el-option>
+      </el-option-group>
     </el-select>
     <el-select
       v-model="form.map"
