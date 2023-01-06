@@ -125,7 +125,11 @@ export default {
           break;
         case 'normal':
           // 如果全部选中 置为未选中状态
-          if (this.adventure.every((x) => x.isFinish == true)) {
+          if (
+            this.adventure
+              .filter((x) => x.type !== 99)
+              .every((x) => x.isFinish == true)
+          ) {
             this.adventure
               .filter((x) => x.type !== 99)
               .forEach((x) => {
@@ -145,7 +149,11 @@ export default {
           break;
         case 'perfect':
           // 如果全部选中 置为未选中状态
-          if (this.adventure.every((x) => x.isFinish == true)) {
+          if (
+            this.adventure
+              .filter((x) => x.type !== 99)
+              .every((x) => x.isFinish == true)
+          ) {
             this.adventure
               .filter((x) => x.type !== 99)
               .forEach((x) => {
