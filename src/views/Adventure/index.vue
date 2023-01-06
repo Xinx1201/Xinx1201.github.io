@@ -50,14 +50,14 @@
         >
           <el-option-group
             v-for="group in servers"
-            :key="group.label"
-            :label="group.label"
+            :key="group.zone"
+            :label="group.zone"
           >
             <el-option
               v-for="item in group.options"
-              :key="item.label"
-              :label="item.label"
-              :value="item.label"
+              :key="item.server"
+              :label="item.server"
+              :value="item.server"
             >
             </el-option>
           </el-option-group>
