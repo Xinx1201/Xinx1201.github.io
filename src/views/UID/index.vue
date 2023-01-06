@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-column flex-ai-stretch">
+  <div class="uid flex-column flex-ai-stretch">
     <Operation class="flex-none" @select="select" />
     <DataTable
       :tableData="
@@ -40,4 +40,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.uid {
+  min-width: 1600px;
+}
+</style>

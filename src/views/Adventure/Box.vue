@@ -9,11 +9,11 @@
     >
       <template v-if="item.type != 99">
         <!-- 背景 -->
-        <img :src="item.bg" class="bg" />
+        <img :src="item.bg" class="bg" v-if="false" />
         <!-- 中间 -->
-        <img :src="item.img" class="cover" />
+        <img :src="item.img" class="cover" v-if="false" />
         <!-- 文字 -->
-        <img :src="item.text" class="text" />
+        <img :src="item.text" class="text" v-if="false" />
 
         <!-- 右上角上角已完成tag -->
         <div

@@ -1,14 +1,19 @@
 .container {
   height: 100%;
+  min-width: 1600px;
+  position: relative;
+
+  .select {
+    position: absolute;
+    display: block;
+    right: 0;
+    top: -45px;
+  }
+
   .calc {
     height: 100px;
     background-color: #fafafa;
     position: relative;
-    .select {
-      position: absolute;
-      right: 0;
-      top: -45px;
-    }
 
     .deleteAll {
       position: absolute;
@@ -18,7 +23,7 @@
 
     .main {
       line-height: 100px;
-      margin-top: 10px;
+      margin-top: 25px;
       display: flex;
       flex-direction: row;
       align-items: center;

@@ -214,6 +214,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.todo {
+  min-width: 1600px;
+}
 .input {
   width: 500px;
   margin-bottom: 10px;

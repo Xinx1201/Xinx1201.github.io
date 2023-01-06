@@ -204,6 +204,7 @@ export default {
 <style lang="scss" scoped>
 .adventure {
   min-width: 1600px;
+  width: 100%;
   position: relative;
 
   .show {
