@@ -65,8 +65,6 @@ export default {
     },
 
     websocketonopen() {
-      console.log(window.websock);
-      console.log('WebSocket连接成功');
       this.flag = true;
       this.msg.push(`WebSocket连接成功`);
       if (this.text !== '') {
